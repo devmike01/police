@@ -13,8 +13,9 @@ class TopBarState{
 class ForcesMenu extends HomeMenu{
   String title;
   String imgResPath;
+  int index;
 
-  ForcesMenu(this.title, this.imgResPath);
+  ForcesMenu(this.title, this.imgResPath, this.index);
 }
 
 

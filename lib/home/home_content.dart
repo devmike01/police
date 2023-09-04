@@ -34,8 +34,7 @@ class HomeContent extends StatelessWidget {
             AppIcons.policeman_ic,
             "34 Isambard brunnel road",
           ),
-          Expanded(
-            child: Padding(padding: const EdgeInsets.all(20),
+          Padding(padding: const EdgeInsets.all(20),
             child: state.homeMenus != null
                 ? StaggeredGrid.count(
               crossAxisCount: 2,
@@ -50,13 +49,17 @@ class HomeContent extends StatelessWidget {
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: HomeCard(
-                          title: homeMenu.title,
-                          image: homeMenu.imgResPath),
+                        index: homeMenu.index,
+                        title: homeMenu.title,
+                        image: homeMenu.imgResPath,
+                        onTap: (index){
+                          print("object_index: $index");
+                        },),
                     ));
               }).toList() ?? [],
             )
                 : Container(),)
-          )
+
         ],
       );
     });

@@ -17,9 +17,13 @@ class HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context) {
     return BlocProvider(create: (_) => HomeContentBloc(),
-    child:  Scaffold(
-      body: HomeContent(),
-      appBar: AppBar(),
+    child:  const Scaffold(
+      body: SafeArea(child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(top: 40),
+          child: HomeContent(),
+        ),
+      )),
     ),);
   }
 

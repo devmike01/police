@@ -29,7 +29,7 @@ class TobNavState extends State<TopNavBar>{
         children: widget.children.map((e) {
           e.selected = e.index == selected;
           return Padding(
-            padding: EdgeInsets.only(right: 30, bottom: 30),
+            padding: EdgeInsets.only(right: 30, bottom: 10),
             child: InkWell(
               onTap: (){
                 widget.onSelect?.call(e.index);
@@ -58,9 +58,7 @@ class TobNavState extends State<TopNavBar>{
     return Container(
       height: 5,
       width: 20,
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor
-      ),
+      color: Colors.blue,
     );
   }
 

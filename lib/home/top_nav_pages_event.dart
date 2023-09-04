@@ -12,7 +12,7 @@ class ForcesEvent extends TopNavPagesEvent{
 
   @override
   String getTitle() {
-    return "Forces in the United Kingdom";
+    return "Forces in the\nUnited Kingdom";
   }
 }
 class CrimesEvent  extends TopNavPagesEvent{
@@ -24,7 +24,7 @@ class CrimesEvent  extends TopNavPagesEvent{
 
   @override
   String getTitle() {
-    return "See crimes around your selected\narea";
+    return "Crimes around your\nselected area";
   }
 }
 class NewsEvent extends TopNavPagesEvent{
@@ -37,6 +37,6 @@ class NewsEvent extends TopNavPagesEvent{
 
   @override
   String getTitle() {
-    return "See what's happening in your\ncurrent neighbouhood.";
+    return "Happenings in your\ncurrent neighbouhood.";
   }
 }

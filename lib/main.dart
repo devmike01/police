@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:police/core/injector.dart';
 
 import 'home/home_screen.dart';
 
 void main() {
+  setup();
   runApp(const MyApp());
 }
 
