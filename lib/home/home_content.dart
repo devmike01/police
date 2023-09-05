@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:police/core/app_navigator.dart';
+import 'package:police/forces/forces_screen.dart';
 import 'package:police/home/top_nav_ui.dart';
 import 'package:police/misc/app_icons.dart';
 
@@ -18,6 +20,7 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final contentBloc = context.read<HomeContentBloc>();
     contentBloc.changePage(0);
+
 
     return BlocBuilder<HomeContentBloc, TopBarState>(builder: (context, state) {
       return Column(
@@ -47,13 +50,14 @@ class HomeContent extends StatelessWidget {
                     crossAxisCellCount: 1,
                     mainAxisExtent: contentBloc.menuPos % 2 > 0 ? 190 : 230,
                     child: Card(
+                      color: Color(homeMenu.color),
                       margin: EdgeInsets.zero,
                       child: HomeCard(
                         index: homeMenu.index,
                         title: homeMenu.title,
                         image: homeMenu.imgResPath,
                         onTap: (index){
-                          print("object_index: $index");
+                          Navigator.pushNamed(context, ForcesScreen.route);
                         },),
                     ));
               }).toList() ?? [],
@@ -64,25 +68,15 @@ class HomeContent extends StatelessWidget {
       );
     });
   }
+
+  void navigateTo(BuildContext context, int pos){
+    print("object => $pos");
+    switch(pos){
+      case 0:{
+        Navigator.pushNamed(context, ForcesScreen.route);
+        break;
+      }
+    }
+  }
 }
 
-/*
-MasonryGridView.count(
-  crossAxisCount: 4,
-  mainAxisSpacing: 4,
-  crossAxisSpacing: 4,
-  itemBuilder: (context, index) {
-    return Tile(
-      index: index,
-      extent: (index % 5 + 1) * 100,
-    );
-  },
-);
-
-
-Card(
-                        margin: EdgeInsets.zero,
-                        child: HomeCard(
-                            title: homeMenu.title, image: homeMenu.imgResPath),
-                      )
- */

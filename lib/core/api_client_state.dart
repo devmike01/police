@@ -1,6 +1,10 @@
 class ApiClient<T>{
   T? data;
-  String? message;
+  String? errorMsg;
 
-  ApiClient({this.data, this.message});
+  ApiClient({this.data, this.errorMsg});
+  
+  bool hasData() => data != null;
+  
+  bool hasError() => errorMsg != null;
 }

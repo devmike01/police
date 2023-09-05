@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/home/home_content.dart';
@@ -6,6 +5,8 @@ import 'package:police/home/home_content_bloc.dart';
 
 class HomeScreen extends StatefulWidget{
   const HomeScreen({super.key});
+
+  static const String route = "home.HomeScreen";
 
   @override
   HomeScreenState createState() => HomeScreenState();

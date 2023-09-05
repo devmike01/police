@@ -7,7 +7,7 @@ abstract class Repository{
       final response = await func.call();
       return ApiClient(data: response);
     }catch (error){
-      return ApiClient(message: error.toString());
+      return ApiClient(errorMsg: error.toString());
     }
   }
 }

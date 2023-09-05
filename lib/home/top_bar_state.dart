@@ -14,8 +14,9 @@ class ForcesMenu extends HomeMenu{
   String title;
   String imgResPath;
   int index;
+  int color;
 
-  ForcesMenu(this.title, this.imgResPath, this.index);
+  ForcesMenu(this.title, this.imgResPath, this.index, this.color);
 }
 
 

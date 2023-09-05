@@ -24,7 +24,7 @@ class HomeCard extends StatelessWidget{
                   style: Theme.of(context)
                       .textTheme.bodyMedium
                       ?.copyWith(fontWeight: FontWeight.w900,
-                      fontSize: 17),),
+                      fontSize: 17, color: Colors.white),),
               )),
           Expanded(child: Image.asset(image,
             height: 100,  fit: BoxFit.cover,))

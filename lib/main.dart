@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:police/core/injector.dart';
 
+import 'core/routes.dart';
 import 'home/home_screen.dart';
 
 void main() {
@@ -17,10 +19,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        textTheme: GoogleFonts.khandTextTheme(
+          Theme.of(context).textTheme,
+        ),
         primaryColor: Colors.blue,
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      initialRoute: HomeScreen.route,
+      routes: AppRoutes.instance,
     );
   }
 }
