@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:police/core/location/location_bloc.dart';
 import 'package:police/home/home_content.dart';
 import 'package:police/home/home_content_bloc.dart';
 
@@ -17,7 +18,11 @@ class HomeScreenState extends State<HomeScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (_) => HomeContentBloc(),
+    return MultiBlocProvider(
+    providers: [
+      BlocProvider(create: (_) => HomeContentBloc()),
+      BlocProvider(create: (_) => LocationBloc())
+    ],
     child:  const Scaffold(
       body: SafeArea(child: SingleChildScrollView(
         child: Padding(

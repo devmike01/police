@@ -1,13 +1,13 @@
 import 'package:police/home/top_nav.dart';
 
-class TopBarState{
+class HomeState{
   int page;
   String title;
   List<HomeMenu>? homeMenus;
 
-  TopBarState( this.page, this.title, {this.homeMenus});
+  HomeState( this.page, this.title, {this.homeMenus});
 
-  static TopBarState nothing = TopBarState(-1, "");
+  static HomeState nothing = HomeState(-1, "");
 }
 
 class ForcesMenu extends HomeMenu{

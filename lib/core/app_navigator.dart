@@ -11,6 +11,7 @@ class AppNavigator{
 
   Future<T?> pushForcesRoute<T>() => _navigator.pushNamed(ForcesScreen.route);
   Future<T?> pushHomeRoute<T>() => _navigator.pushNamed(HomeScreen.route);
+  void pop<T>() => _navigator.pop();
 }
 
 extension NavigatorContext on BuildContext {

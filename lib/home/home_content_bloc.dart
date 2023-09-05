@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/injector.dart';
-import 'package:police/home/top_bar_state.dart';
+import 'package:police/home/home_state.dart';
 import 'package:police/home/top_nav.dart';
 import 'package:police/home/top_nav_pages_event.dart';
 
 import '../misc/app_icons.dart';
 import '../repository/police_repository.dart';
 
-class HomeContentBloc extends Bloc<TopNavPagesEvent, TopBarState>{
+class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
 
   final _homeRepository = getIt.get<PoliceRepository>();
 
@@ -23,22 +23,22 @@ class HomeContentBloc extends Bloc<TopNavPagesEvent, TopBarState>{
 
   int menuPos =-1;
 
-  HomeContentBloc(): super(TopBarState.nothing){
+  HomeContentBloc(): super(HomeState.nothing){
     listen();
   }
 
 
   void listen(){
-    on<ForcesEvent>((event, emit) => emit(TopBarState(event.getIndex(),
+    on<ForcesEvent>((event, emit) => emit(HomeState(event.getIndex(),
         event.getTitle(), homeMenus: [
           ForcesMenu("List of all forces in the Uk", AppIcons.policeman_ic, 0, Colors.redAccent.value),
           ForcesMenu("See all UK emergency numbers", AppIcons.location_ill, 1, Colors.purple.value),
           ForcesMenu("See your neigbourhood Officers", AppIcons.policeman_ic, 2, Colors.orange.value),
           ForcesMenu("Misc", AppIcons.policeman_ic, 3, Colors.blueAccent.value)
         ])));
-    on<NewsEvent>((event, emit) => emit(TopBarState(event.getIndex(),
+    on<NewsEvent>((event, emit) => emit(HomeState(event.getIndex(),
         event.getTitle())));
-    on<CrimesEvent>((event, emit) => emit(TopBarState(event.getIndex(),
+    on<CrimesEvent>((event, emit) => emit(HomeState(event.getIndex(),
         event.getTitle())));
   }
 
