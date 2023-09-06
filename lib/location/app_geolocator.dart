@@ -15,6 +15,7 @@ class AppGeolocator{
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
+
       return Future.error('Location services are disabled.');
     }
 
@@ -39,6 +40,13 @@ class AppGeolocator{
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
+
     return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+  }
+
+  //Geolocator.getLastKnownPosition()
+
+  Future<Position?> getLastKnownPosition() async{
+    return await Geolocator.getLastKnownPosition();
   }
 }

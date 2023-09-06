@@ -4,7 +4,9 @@ import 'package:police/misc/app_icons.dart';
 class PageTitle extends StatelessWidget{
   String title;
   Function? onSettingsClicked;
-  PageTitle(this.title, {super.key, this.onSettingsClicked});
+  bool showSettings;
+  PageTitle(this.title, {super.key, this.onSettingsClicked,
+    this.showSettings =true});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,8 @@ class PageTitle extends StatelessWidget{
           onTap: (){
             onSettingsClicked?.call();
           },
-          child: Image.asset(AppIcons.settingsIc,
-            width: 40, height: 40, fit: BoxFit.fill,),
+          child: showSettings ? Image.asset(AppIcons.settingsIc,
+            width: 40, height: 40, fit: BoxFit.fill,): const SizedBox(height: 0,width: 0,),
         )
       ],
     ),);

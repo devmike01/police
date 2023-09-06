@@ -19,4 +19,9 @@ class PoliceApiClient extends CoreClient{
      }).toList();
     return forces;
   }
+
+  /*
+  String data = await DefaultAssetBundle.of(context).loadString("assets/data.json");
+final jsonResult = jsonDecode(data);
+   */
 }

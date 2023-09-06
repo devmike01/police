@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:police/misc/app_icons.dart';
 
+import '../core/loading_text.dart';
+
 class ForcesBanner extends StatelessWidget{
 
-  String bannerTitle;
+  String? bannerTitle;
   String bannerImage;
-  String bannerSubtitle;
+  String? bannerSubtitle;
 
   ForcesBanner(this.bannerImage, this.bannerTitle, this.bannerSubtitle, {super.key});
 
@@ -27,10 +29,10 @@ class ForcesBanner extends StatelessWidget{
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(bannerTitle, style: Theme.of(context)
-                      .textTheme.titleLarge?.copyWith(color: Colors.white),),
-                  Text(bannerSubtitle, style: Theme.of(context)
-                      .textTheme.titleSmall?.copyWith(color: Colors.white60),)
+                  LoadingText(bannerTitle, style: Theme.of(context)
+                      .textTheme.titleLarge?.copyWith(color: Colors.white), width: 130,),
+                  LoadingText(bannerSubtitle, style: Theme.of(context)
+                      .textTheme.titleSmall?.copyWith(color: Colors.white60), width: 100,)
                 ],
               )),
               ClipRRect(
@@ -42,5 +44,6 @@ class ForcesBanner extends StatelessWidget{
       ),),
     );
   }
+
 
 }

@@ -45,12 +45,13 @@ class HomeContent extends StatelessWidget {
               );
             }
             final cLocationState = locState as CurrentLocationState;
-            final placemark = cLocationState.placemarks.first;
+
+            final placemark = cLocationState.placemarks?.first;
 
             return ForcesBanner(
               AppIcons.policeman_ic,
-              placemark.street ?? "",
-                placemark.locality ??""
+              placemark?.street,
+                placemark?.locality
             );
           }),
           Padding(padding: const EdgeInsets.all(20),
@@ -73,7 +74,7 @@ class HomeContent extends StatelessWidget {
                         title: homeMenu.title,
                         image: homeMenu.imgResPath,
                         onTap: (index){
-                          Navigator.pushNamed(context, ForcesScreen.route);
+                          navigateTo(context, index);
                         },),
                     ));
               }).toList() ?? [],
@@ -90,7 +91,9 @@ class HomeContent extends StatelessWidget {
     switch(pos){
       case 0:{
         Navigator.pushNamed(context, ForcesScreen.route);
-        break;
+      }
+      case 1: {
+        context.router.pushEmergencyRoute();
       }
     }
   }

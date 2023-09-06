@@ -1,0 +1,94 @@
+[
+{"title": "The Main Emergency Number ",
+"number":"999"},
+{"title": "Another Emergency Number",
+"number":"112"},
+
+{"title": "The Non-Emergency Number for the Police",
+"number":"101"},
+
+{"title": "The Non-Emergency Medical Number",
+"number":"111"},
+
+{"title": "ACAS (Advisory, Conciliation and Arbitration Services)",
+"number":"0300 123 1100"},
+
+{"title": "Age UK",
+"number":"0800 678 1174"},
+
+{"title": "Bereavement Advice Centre (Funerals, Probate & Tax)",
+"number":"0800 634 9494"},
+
+{"title": "Business Debt Line",
+"number":"0800 197 6026"},
+
+{"title": "Citizens Advice – Adviceline",
+"number":"0808 278 7880"},
+
+{"title": "Citizens Advice – Consumer Helpline",
+"number":"0808 223 1133"},
+
+{"title": "Emergency Homelessness Number",
+"number":"01257 515 142"},
+
+{"title": "Shelter 8am to 8pm",
+"number": "0808 800 4444"},
+
+{"title": "Domestic Abuse Helpline(National Helpline 24hrs)",
+"number":"0808 2000 247 "},
+
+{"title": "Domestic Violence Help (Female) Clare House",
+"number":"01772 435 865"},
+
+{"title": "Domestic Violence Help (Male) Mankind",
+"number":"01823 334 244"},
+
+{"title": "DWP ESA Helpline",
+"number":"0800 055 6688"},
+
+{"title": "DWP PIP Claim Line",
+"number":"0800 917 2222"},
+
+{"title": "DWP PIP Helpline",
+"number":"0345 850 3322"},
+
+{"title": "HMRC Child Benefit Helpline",
+"number":"0345 200 3100"},
+
+{"title": "HMRC Self Assessment Helpline",
+"number":"0300 200 3310"},
+
+{"title": "HMRC Tax Credits Helpline",
+"number":"0345 300 3900"},
+
+{"title": "Maximus (Telephone support service to help claimants complete their ESA50 capability for work questionnaire)",
+"number":"0800 288 8777"},
+
+{"title": "Mind (Mental Health Support)",
+"number":"0300 123 3393"},
+
+{"title": "Money Advice Service",
+"number":"0800 138 7777"},
+
+{"title": "National Debt Line",
+"number":"0808 808 4000"},
+
+{"title": "Pensions Advisory Service",
+"number":"0800 011 3797"},
+
+{"title": "Pension Wise",
+"number":"0800 1383 944"},
+
+{"title": "Samaritans",
+"number":"116 123"},
+
+{"title": "Scope (Disability Support)",
+"number":"0808 800 3333"},
+
+{"title": "Victim Support (Domestic Abuse)",
+"number":"0300 323 0085"},
+
+{"title": "Welfare Rights (Lancashire)",
+"number": "0300 123 6739"}
+
+]

@@ -10,10 +10,14 @@ class LocationBloc extends Cubit<LocationState>{
 
   void getCurrentLocation() async{
     final geo = getIt.get<AppGeolocator>();
-    final position = await geo.determinePosition();
-    final placeMarks = await placemarkFromCoordinates(position.latitude,
-        position.longitude);
-    emit(CurrentLocationState(placeMarks));
+    try{
+      final position = await geo.determinePosition();
+      final placeMarks = await placemarkFromCoordinates(position.latitude,
+          position.longitude);
+      emit(CurrentLocationState(placemarks: placeMarks));
+    }catch(exception){
+      emit(CurrentLocationState(noLocation: true));
+    }
   }
 
 }
