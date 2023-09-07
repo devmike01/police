@@ -6,7 +6,7 @@ class PageTitle extends StatelessWidget{
   Function? onSettingsClicked;
   bool showSettings;
   PageTitle(this.title, {super.key, this.onSettingsClicked,
-    this.showSettings =true});
+    this.showSettings =false});
 
   @override
   Widget build(BuildContext context) {

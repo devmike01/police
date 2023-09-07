@@ -27,7 +27,7 @@ class HomeCard extends StatelessWidget{
                       fontSize: 17, color: Colors.white),),
               )),
           Expanded(child: Image.asset(image,
-            height: 100,  fit: BoxFit.cover,))
+            height: 100,  fit: BoxFit.cover, width: 100,))
         ],
       ),
     );

@@ -6,6 +6,7 @@ import 'package:police/home/top_nav.dart';
 import 'package:police/home/top_nav_pages_event.dart';
 
 import '../misc/app_icons.dart';
+import '../misc/app_strings.dart';
 import '../repository/police_repository.dart';
 
 class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
@@ -32,9 +33,9 @@ class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
     on<ForcesEvent>((event, emit) => emit(HomeState(event.getIndex(),
         event.getTitle(), homeMenus: [
           ForcesMenu("List of all forces in the Uk", AppIcons.policeman_ic, 0, Colors.redAccent.value),
-          ForcesMenu("See all UK emergency numbers", AppIcons.location_ill, 1, Colors.purple.value),
-          ForcesMenu("See your neigbourhood Officers", AppIcons.policeman_ic, 2, Colors.orange.value),
-          ForcesMenu("Misc", AppIcons.policeman_ic, 3, Colors.blueAccent.value)
+          ForcesMenu("All UK emergency numbers", AppIcons.joyfulDoctor, 1, Colors.purple.value),
+          ForcesMenu(MenuStrings.stopAndSearch, AppIcons.policeman_ic, 2, Colors.orange.value),
+          ForcesMenu("Neigbourhood for a UK\npolice force", AppIcons.policeman_ic, 3, Colors.blueAccent.value)
         ])));
     on<NewsEvent>((event, emit) => emit(HomeState(event.getIndex(),
         event.getTitle())));

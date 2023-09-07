@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:police/core/api_client_state.dart';
 import 'package:police/core/injector.dart';
+import 'package:police/models/stopsearch.dart';
 
 import '../models/forces.dart';
 import 'core_client.dart';
@@ -20,8 +21,17 @@ class PoliceApiClient extends CoreClient{
     return forces;
   }
 
-  /*
-  String data = await DefaultAssetBundle.of(context).loadString("assets/data.json");
-final jsonResult = jsonDecode(data);
-   */
+  Future<List<StopSearch>> getStopSearchHistory(double lat, double lng,
+      String date) async{
+    final result = await _get("/stops-street",
+        queryParameters: {"lat": lat, "lng": lng, "date": date});
+    List<StopSearch> stopSearch = List.from(result).map((e){
+      return StopSearch.fromJson(e);}).toList();
+     return stopSearch;
+  }
+
+  Future<dynamic> _get(String path, {Map<String, dynamic>? queryParameters}) async{
+    final result = await dio.get(path, queryParameters: queryParameters);
+    return jsonDecode(jsonEncode(result.data));
+  }
 }

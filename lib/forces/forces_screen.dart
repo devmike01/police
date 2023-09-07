@@ -6,7 +6,10 @@ import 'package:police/forces/force_state.dart';
 import 'package:police/forces/forces_bloc.dart';
 import 'package:police/forces/search_bloc.dart';
 import 'package:police/forces/search_state.dart';
+import 'package:police/misc/page_title.dart';
 import 'package:police/models/forces.dart';
+
+import '../widgets/column_tile.dart';
 
 class ForcesScreen extends StatefulWidget{
 
@@ -30,6 +33,10 @@ class ForcesScreenState extends State<ForcesScreen>{
   Widget build(BuildContext context) {
     SearchBloc? searchBloc;
     ForcesBloc? forcesBloc;
+
+
+    List<Widget> children = [Padding(padding: EdgeInsets.all(10),
+      child: PageTitle("Police forces in the\nUnited Kingdom", showSettings: false,),)];
 
     return MultiBlocProvider(
     providers: [
@@ -65,7 +72,7 @@ class ForcesScreenState extends State<ForcesScreen>{
               decoration: const InputDecoration(
                   hintText: "Search police force"
               ),
-            ): const Text("UK Police Forces");
+            ): const Text("Back");
           },
         ),
         actions:  [
@@ -89,40 +96,22 @@ class ForcesScreenState extends State<ForcesScreen>{
             return const Center(child: CircularProgressIndicator(),);
           }
 
-          return ListView.builder(
-              itemCount: forcesBloc?.state.forces?.length ??0,
-              itemBuilder: (context, index){
-                Forces? force = forcesBloc?.state.forces?[index];
-                return Padding(padding: const EdgeInsets.only(left: 10,
-                    right: 10, bottom: 7, top: 7), child: Row(
-                    children:[
-                      Container(
-                        margin: const EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                            color: Colors.orange,
-                            borderRadius: const BorderRadius.all(Radius.circular(40)),
-                            border: Border.all(color: Theme.of(context).primaryColor, width: 2)
-                        ),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(50)),
-                          child: Image.asset(forcesBloc?.generatePoliceIcon() ??"",
-                            width: 40, height: 40, fit: BoxFit.cover,),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(force?.name ??"",
-                            style: Theme.of(context).textTheme.titleSmall,),
-                          Text(force?.country ??"",
-                            style: Theme.of(context)
-                                .textTheme.bodySmall
-                                ?.copyWith(color: Colors.black45),)
-                        ],
-                      )
-                    ]
-                ),);
-              });
+          children.add(Column(
+            children: forcesBloc?.state.forces?.map((force) {
+              return ColumnTile(
+                force.name,
+                force.country,
+                forcesBloc?.generatePoliceIcon()
+              );
+            }).toList() ?? [],
+          ));
+
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children,
+            ),
+          );
         },
 
       ),
