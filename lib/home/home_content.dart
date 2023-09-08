@@ -57,6 +57,7 @@ class HomeContent extends StatelessWidget {
             locality = placemark?.locality;
             latLng = cLocationState.latlng;
 
+            // Change banner content
             return ForcesBanner(
               AppIcons.currentLocation,
               placemark?.street,

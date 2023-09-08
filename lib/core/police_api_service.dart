@@ -4,8 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:police/core/api_client_state.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/core/latlng.dart';
+import 'package:police/exts/dynamic_ext.dart';
+import 'package:police/models/crime_at_location.dart';
 import 'package:police/models/stopsearch.dart';
 
+import '../models/crime_category.dart';
 import '../models/find_neigbourhood.dart';
 import '../models/forces.dart';
 import '../models/force_neigbourhood.dart';
@@ -35,14 +38,6 @@ class PoliceApiClient extends CoreClient{
      return stopSearch;
   }
 
-  void locateNeigbourhoodv2(String neigbourhood) async{
-    final result = await _get("/$neigbourhood/neighbourhoods");
-
-
-    print("object_result1 $result");
-  }
-
-
 
   Future<FindNeigbourhood> locateNeigbourhood(LatLng latLng) async{
     final result = await _get("/locate-neighbourhood", queryParameters: {
@@ -69,8 +64,25 @@ class PoliceApiClient extends CoreClient{
     final result = await _get("/$neigbourhood/$nCode/events");
     return NeigbourhoodEvents.fromJson(result);
   }
+  
+  Future<List<CrimeCategory>> getCrimeCategories() async{
+    final result = await _get("/crime-categories");
+    final categories = result.as<List<CrimeCategory>>();
+    return categories;
+  }
 
-  //https://data.police.uk/api/leicestershire/NC04/events
+
+  Future<List<CrimeAtLocation>> getCrimes(String date, double lat, double lng) async{
+    final result = await _get("/crimes-at-location", queryParameters: {
+      'date' : date,
+      'lat': lat,
+      'lng': lng
+    });
+    final categories = List.from(result).map((e) => CrimeAtLocation
+        .fromJson(e)).toList();
+    return categories;
+  }
+
 
 
   Future<dynamic> _get(String path, {Map<String, dynamic>? queryParameters}) async{
