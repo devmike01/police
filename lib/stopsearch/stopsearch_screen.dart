@@ -36,72 +36,105 @@ class StopSearchScreenState extends State<StopSearchScreen>{
 
     BuildContext? pContext;
 
+    final now = DateTime.now();
+    DateTime initialDate = DateTime(now.year-2);
+
     return BlocProvider(
       create: (context) {
         return StopSearchBloc();
         },
     lazy: false,
     child: Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-          onPressed: (){
-        final now = DateTime.now();
-
-        showMonthYearPicker(
-          context: context,
-          initialDate: DateTime(now.year-2),
-          firstDate: DateTime(now.year-2),
-          lastDate: now,
-        ).then((value){
-          pContext?.read<StopSearchBloc>()
-              .getStopAndSearch(stopSearchArgs?.lat,
-              stopSearchArgs?.lng, "${value?.year}-${value?.month}");
-        });
-      }, icon: const Icon(Icons.date_range_outlined),
-      label: const Text("Change date"),),
       appBar: AppBar(
         title: const Text("Back"),
+        actions: [
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: InkWell(
+            onTap: (){
+              showMonthYearPicker(
+                context: context,
+                initialDate: initialDate,
+                firstDate: DateTime(now.year-2),
+                lastDate: now,
+              ).then((value){
+                if(value != initialDate){
+                  pContext?.read<StopSearchBloc>().updateTime(value);
+                  pContext?.read<StopSearchBloc>()
+                      .getStopAndSearch(stopSearchArgs?.lat,
+                      stopSearchArgs?.lng, "${value?.year}-${value?.month}");
+                }
+
+              });
+            },
+            child: Row(
+              children: [
+                const Icon(Icons.calendar_today_outlined),
+                const SizedBox(width: 10,),
+                Builder(builder: (_){
+                  final bloc = pContext?.read<StopSearchBloc>();
+                  return StreamBuilder<DateTime>(
+                    stream: bloc!.dateTime,
+                    builder: (context, snapshot){
+                      initialDate = snapshot.requireData;
+                      return Text("${initialDate.month} - ${initialDate.year}");
+                    }, initialData: initialDate,
+                  );
+                })
+              ],
+            ),
+          ),)
+        ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: BlocBuilder<StopSearchBloc, StopSearchState>(
-            builder: (context, state){
+        child: Builder(builder: (_){
+           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            pContext?.read<StopSearchBloc>()
+                .getStopAndSearch(stopSearchArgs?.lat,
+                stopSearchArgs?.lng, "${initialDate?.year}-${initialDate?.month}");
+          });
 
-              pContext = context;
-              if(state.error != null){
-                return AppErrorWidget(state.error ??"");
-              }
+          return SingleChildScrollView(
+            child: BlocBuilder<StopSearchBloc, StopSearchState>(
+              builder: (context, state){
 
-              if(state.isLoading){
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
+                pContext = context;
+
+                if(state.error != null){
+                  return AppErrorWidget(state.error ??"");
+                }
+
+                if(state.isLoading){
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
 
 
-              final topStopSearch = state.topStopSearch;
-              return Column(
-                children: [
-                  PageTitle(MenuStrings.stopAndSearch),
-                  ForcesBanner(
-                      AppIcons.policeType1,
-                      "${topStopSearch?.stopSearch.location?.street?.name
-                          ??"N/A"} in ${stopSearchArgs.locality}",
-                      topStopSearch?.percentString()
-                  ),
-                  const SizedBox(height: 20,),
-                  Padding(padding: const EdgeInsets.all(0),
-                    child: Column(
-                      children: state.stopSearchList?.map((e)
-                      => ColumnTile(e?.stopSearch.location?.street?.name,
+                final topStopSearch = state.topStopSearch;
+                return Column(
+                  children: [
+                    PageTitle(MenuStrings.stopAndSearch),
+                    ForcesBanner(
+                        AppIcons.policeType1,
+                        "${topStopSearch?.stopSearch.location?.street?.name
+                            ??"N/A"} in ${stopSearchArgs.locality}",
+                        topStopSearch?.percentString()
+                    ),
+                    const SizedBox(height: 20,),
+                    Padding(padding: const EdgeInsets.all(0),
+                      child: Column(
+                        children: state.stopSearchList?.map((e)
+                        => ColumnTile(e?.stopSearch.location?.street?.name,
                           e.rating, AppIcons.location_ill, onTap: (){
 
-                        },)).toList() ??[],
-                    ), )
-                ],
-              );
-            },
-          ),
-        ),
+                          },)).toList() ??[],
+                      ), )
+                  ],
+                );
+              },
+            ),
+          );
+        }),
       ),
     ),);
   }

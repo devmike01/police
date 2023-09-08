@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/stopsearch/stopsearch_event.dart';
@@ -12,6 +14,8 @@ class StopSearchBloc extends Bloc<StopSearchEvent, StopSearchState>{
 
   final _policeRepo = getIt.get<PoliceRepository>();
   final Map<String, PercentStopSearch> _predictor = {};
+  final StreamController<DateTime> _dateTime = StreamController.broadcast();
+  Stream<DateTime> get dateTime => _dateTime.stream;
 
   late StopSearchState successStopSearchState;
 
@@ -50,6 +54,11 @@ class StopSearchBloc extends Bloc<StopSearchEvent, StopSearchState>{
     if(lng ==null)return;
 
     add(FetchHistoryEvent(lat, lng, dateYM));
+  }
+
+  void updateTime(DateTime? dateTime){
+    if(dateTime ==null)return;
+    _dateTime.sink.add(dateTime);
   }
 
   List<PercentStopSearch> predictSSStreet(List<StopSearch> stopSearchList){

@@ -3,6 +3,7 @@ import 'package:police/forces/forces_screen.dart';
 import 'package:police/home/home_screen.dart';
 
 import '../emergency/emergency_screen.dart';
+import '../neigbourhood/neigbourhood_route.dart';
 import '../stopsearch/stopsearch_screen.dart';
 
 class AppRoutes{
@@ -10,6 +11,7 @@ class AppRoutes{
     HomeScreen.route : (_) => const HomeScreen(),
     ForcesScreen.route : (_) => const ForcesScreen(),
     EmergencyScreen.route : (_) => const EmergencyScreen(),
-    StopSearchScreen.route : (_) => StopSearchScreen(),
+    StopSearchScreen.route : (_) => const StopSearchScreen(),
+    NeigbourhoodRoute.route : (_) => const NeigbourhoodRoute(),
   };
 }

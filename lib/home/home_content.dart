@@ -6,9 +6,11 @@ import 'package:police/core/app_navigator.dart';
 import 'package:police/core/latlng.dart';
 import 'package:police/core/location/location_bloc.dart';
 import 'package:police/core/location/location_state.dart';
+import 'package:police/exts/buildcontext_ext.dart';
 import 'package:police/forces/forces_screen.dart';
 import 'package:police/home/top_nav_ui.dart';
 import 'package:police/misc/app_icons.dart';
+import 'package:police/neigbourhood/neigbourhood_args.dart';
 
 import '../misc/page_title.dart';
 import '../stopsearch/stopsearch_args.dart';
@@ -94,7 +96,8 @@ class HomeContent extends StatelessWidget {
     });
   }
 
-  void navigateTo(BuildContext context, String? locality, LatLng? latLng, int pos){
+  void navigateTo(BuildContext context, String? locality,
+      LatLng? latLng, int pos){
 
     switch(pos){
       case 0:{
@@ -108,7 +111,14 @@ class HomeContent extends StatelessWidget {
          context.router.pushStopSearchRoute(StopSearchArgs(
            locality,  latLng?.lat, latLng?.lng
          ));
+       }else{
+         context.showSnackbar(const
+         Text("You need to enable location to use this feature."));
        }
+      }
+      case 3:{
+        context.router.pushNeigbourhoodRoute(NeigbourhoodArgs(locality,
+            latLng?.lat, latLng?.lng));
       }
     }
   }

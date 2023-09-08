@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:police/core/police_api_service.dart';
+import 'package:police/core/prefs.dart';
 import 'package:police/core/uk_police_api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../location/app_geolocator.dart';
 import '../repository/police_repository.dart';
@@ -14,10 +16,17 @@ void setup() {
       Dio(BaseOptions(baseUrl: UKPoliceApi.baseUrl))
   );
 
+  getIt.registerLazySingleton(() async{
+    return await SharedPreferences.getInstance();
+  });
+
   getIt.registerSingleton<PoliceApiClient>(PoliceApiClient());
 
   getIt.registerSingleton(PoliceRepository());
 
+  getIt.registerSingleton(AppPrefs());
+
   getIt.registerSingleton(AppGeolocator());
+
 
 }
