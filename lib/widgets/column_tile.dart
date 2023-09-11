@@ -6,13 +6,19 @@ class ColumnTile extends StatelessWidget{
   String? subTitle;
   String? imagePath;
   Function()? onTap;
+  double vertical;
+  double horizontal;
+  Widget? trailing;
 
-  ColumnTile(this.title, this.subTitle, this.imagePath, {super.key, this.onTap});
+  ColumnTile(this.title, this.subTitle,
+      this.imagePath, {super.key, this.onTap,
+        this.vertical = 10, this.horizontal =20,
+        this.trailing});
 
   @override
   Widget build(BuildContext context) {
-    const padding =EdgeInsets.only(left: 20,
-        right: 20, bottom: 10, top: 10);
+    final padding =EdgeInsets.symmetric(vertical: vertical,
+        horizontal: horizontal);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,7 +51,10 @@ class ColumnTile extends StatelessWidget{
                             .textTheme.bodySmall
                             ?.copyWith(color: Colors.black45),)
                     ],
-                  ))
+                  )),
+                  SizedBox(
+                    child: trailing,
+                  )
                 ]
             ),),
         ),

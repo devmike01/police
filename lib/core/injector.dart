@@ -16,15 +16,13 @@ void setup() {
       Dio(BaseOptions(baseUrl: UKPoliceApi.baseUrl))
   );
 
-  getIt.registerLazySingleton(() async{
-    return await SharedPreferences.getInstance();
-  });
+
+
+  getIt.registerSingleton(AppPrefs());
 
   getIt.registerSingleton<PoliceApiClient>(PoliceApiClient());
 
   getIt.registerSingleton(PoliceRepository());
-
-  getIt.registerSingleton(AppPrefs());
 
   getIt.registerSingleton(AppGeolocator());
 

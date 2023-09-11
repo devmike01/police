@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget{
 
 class HomeScreenState extends State<HomeScreen>{
 
+  ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -24,12 +26,13 @@ class HomeScreenState extends State<HomeScreen>{
       BlocProvider(create: (_) => LocationBloc())
     ],
     child:  const Scaffold(
-      body: SafeArea(child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: 40),
-          child: HomeContent(),
-        ),
-      )),
+      body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: 40),
+              child: HomeContent(),
+            ),
+          )),
     ),);
   }
 

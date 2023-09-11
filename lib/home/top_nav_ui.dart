@@ -42,7 +42,7 @@ class TobNavState extends State<TopNavBar>{
                 children: [
                   Text(e.title ?? "", style: Theme.of(context)
                       .textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),),
-                  AnimatedOpacity(opacity: 0.1,
+                  AnimatedOpacity(opacity: 1,
                     duration: Duration(milliseconds: 400),
                     child: e.selected ? buildBar() : null,
                   )

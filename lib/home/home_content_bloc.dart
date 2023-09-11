@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/home/home_state.dart';
+import 'package:police/home/page_state.dart';
 import 'package:police/home/top_nav.dart';
 import 'package:police/home/top_nav_pages_event.dart';
 
@@ -31,16 +32,16 @@ class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
 
   void listen(){
     on<ForcesEvent>((event, emit) => emit(HomeState(event.getIndex(),
-        event.getTitle(), homeMenus: [
+        event.getTitle(), ForcesPage(), homeMenus: [
           ForcesMenu("List of all forces in the Uk", AppIcons.policeman_ic, 0, Colors.redAccent.value),
           ForcesMenu("All UK emergency numbers", AppIcons.joyfulDoctor, 1, Colors.purple.value),
           ForcesMenu(MenuStrings.stopAndSearch, AppIcons.policeman_ic, 2, Colors.orange.value),
           ForcesMenu(MenuStrings.neigbourhoodForce, AppIcons.policeman_ic, 3, Colors.blueAccent.value)
         ])));
     on<NewsEvent>((event, emit) => emit(HomeState(event.getIndex(),
-        event.getTitle())));
+        event.getTitle(), NewsPage())));
     on<CrimesEvent>((event, emit) => emit(HomeState(event.getIndex(),
-        event.getTitle())));
+        event.getTitle(), CrimePage())));
   }
 
   void changePage(int index) async{

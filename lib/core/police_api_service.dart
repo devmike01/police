@@ -67,13 +67,15 @@ class PoliceApiClient extends CoreClient{
   
   Future<List<CrimeCategory>> getCrimeCategories() async{
     final result = await _get("/crime-categories");
-    final categories = result.as<List<CrimeCategory>>();
+    final categories = List.from(result)
+        .map((e) => CrimeCategory.fromJson(e)).toList();
     return categories;
   }
 
 
   Future<List<CrimeAtLocation>> getCrimes(String date, double lat, double lng) async{
-    final result = await _get("/crimes-at-location", queryParameters: {
+    print("object_error ==> $date, $lat, $lng");
+    final result = await _get("/crimes-street/all-crime", queryParameters: {
       'date' : date,
       'lat': lat,
       'lng': lng

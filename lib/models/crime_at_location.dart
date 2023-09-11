@@ -8,6 +8,7 @@ class CrimeAtLocation {
   int? id;
   String? locationSubtype;
   String? month;
+  int count =0;
 
 
   CrimeAtLocation(
@@ -19,7 +20,8 @@ class CrimeAtLocation {
         this.persistentId,
         this.id,
         this.locationSubtype,
-        this.month});
+        this.month,
+      this.count =0});
 
   CrimeAtLocation.fromJson(Map<String, dynamic> json) {
     category = json['category'];
@@ -35,6 +37,7 @@ class CrimeAtLocation {
     id = json['id'];
     locationSubtype = json['location_subtype'];
     month = json['month'];
+    count = json['count'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +55,7 @@ class CrimeAtLocation {
     data['id'] = this.id;
     data['location_subtype'] = this.locationSubtype;
     data['month'] = this.month;
+    data['count'] = count;
     return data;
   }
 }

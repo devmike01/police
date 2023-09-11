@@ -17,11 +17,12 @@ import '../stopsearch/stopsearch_args.dart';
 import 'forces_banner.dart';
 import 'home_card.dart';
 import 'home_content_bloc.dart';
+import 'home_content_pages.dart';
 import 'home_state.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
+   const HomeContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,93 +36,51 @@ class HomeContent extends StatelessWidget {
     return BlocBuilder<HomeContentBloc, HomeState>(builder: (context, state) {
       String? locality;
       LatLng? latLng;
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          PageTitle(state.title, showSettings: true,),
-          TopNavBar(
-            contentBloc.topBarNavItems,
-            onSelect: (index) {
-              contentBloc.changePage(index);
-            },
-          ),
-          BlocBuilder<LocationBloc, LocationState>(builder: (context, locState){
-            if(locState is None){
-              return const Center(
-                child: CircularProgressIndicator(),
+      return SizedBox(
+        //height: 500,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PageTitle(state.title, showSettings: true,),
+            TopNavBar(
+              contentBloc.topBarNavItems,
+              onSelect: (index) {
+                contentBloc.changePage(index);
+              },
+            ),
+            BlocBuilder<LocationBloc, LocationState>(builder: (context, locState){
+              if(locState is None){
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              final cLocationState = locState as CurrentLocationState;
+
+              final placemark = cLocationState.placemarks?.first;
+              locality = placemark?.locality;
+              latLng = cLocationState.latlng;
+
+
+              print("object_01 ==> ${latLng?.lat}");
+
+              // Change banner content
+              return Column(
+                children: [
+                  ForcesBanner(
+                      AppIcons.currentLocation,
+                      placemark?.street,
+                      placemark?.locality
+                  ),
+                  Padding(padding: const EdgeInsets.all(20),
+                      child: HomeContentPages(state, latLng, locality, contentBloc))
+                ],
               );
-            }
-            final cLocationState = locState as CurrentLocationState;
+            }),
 
-            final placemark = cLocationState.placemarks?.first;
-            locality = placemark?.locality;
-            latLng = cLocationState.latlng;
-
-            // Change banner content
-            return ForcesBanner(
-              AppIcons.currentLocation,
-              placemark?.street,
-                placemark?.locality
-            );
-          }),
-          Padding(padding: const EdgeInsets.all(20),
-            child: state.homeMenus != null
-                ? StaggeredGrid.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 25,
-              crossAxisSpacing: 25,
-              children: state.homeMenus?.map((e) {
-                contentBloc.menuPos += 1;
-                final homeMenu = (e as ForcesMenu);
-                return StaggeredGridTile.extent(
-                    crossAxisCellCount: 1,
-                    mainAxisExtent: contentBloc.menuPos % 2 > 0 ? 190 : 230,
-                    child: Card(
-                      color: Color(homeMenu.color),
-                      margin: EdgeInsets.zero,
-                      child: HomeCard(
-                        index: homeMenu.index,
-                        title: homeMenu.title,
-                        image: homeMenu.imgResPath,
-                        onTap: (index){
-
-                          navigateTo(context, locality, latLng, index);
-                        },),
-                    ));
-              }).toList() ?? [],
-            )
-                : Container(),)
-
-        ],
+          ],
+        ),
       );
     });
-  }
-
-  void navigateTo(BuildContext context, String? locality,
-      LatLng? latLng, int pos){
-
-    switch(pos){
-      case 0:{
-        Navigator.pushNamed(context, ForcesScreen.route);
-      }
-      case 1: {
-        context.router.pushEmergencyRoute();
-      }
-      case 2:{
-       if(latLng != null){
-         context.router.pushStopSearchRoute(StopSearchArgs(
-           locality,  latLng?.lat, latLng?.lng
-         ));
-       }else{
-         context.showSnackbar(const
-         Text("You need to enable location to use this feature."));
-       }
-      }
-      case 3:{
-        context.router.pushNeigbourhoodRoute(NeigbourhoodArgs(locality,
-            latLng?.lat, latLng?.lng));
-      }
-    }
   }
 }
 

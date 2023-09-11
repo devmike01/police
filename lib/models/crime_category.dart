@@ -1,12 +1,11 @@
 class CrimeCategory {
-  String? url;
-  String? name;
+  String url;
+  String name;
 
-  CrimeCategory({this.url, this.name});
+  CrimeCategory({required this.url, required this.name});
 
-  CrimeCategory.fromJson(Map<String, dynamic> json) {
-    url = json['url'];
-    name = json['name'];
+  factory CrimeCategory.fromJson(Map<String, dynamic> json) {
+    return CrimeCategory(url: json['url'], name: json['name']);
   }
 
   Map<String, dynamic> toJson() {

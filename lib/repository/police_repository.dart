@@ -55,7 +55,6 @@ class PoliceRepository extends Repository{
 
   }
 
-
   Future<ApiClient<List<CrimeAtLocation>>> crimeAtLocation(
       String date, double lat, double lng){
     return getWork(() => _policeApiClient.getCrimes(date, lat, lng));

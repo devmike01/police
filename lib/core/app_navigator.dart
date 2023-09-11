@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:police/crimes/crime_args.dart';
+import 'package:police/crimes/crimes_route.dart';
 import 'package:police/neigbourhood/neigbourhood_args.dart';
 import 'package:police/stopsearch/stopsearch_args.dart';
 import '../emergency/emergency_screen.dart';
@@ -20,6 +22,9 @@ class AppNavigator{
       .pushNamed(StopSearchScreen.route, arguments: args);
   Future<T?> pushNeigbourhoodRoute<T>(NeigbourhoodArgs args) => _navigator
       .pushNamed(NeigbourhoodRoute.route, arguments: args);
+  Future<T?> pushCrimesRoute<T>(CrimeArgs args) => _navigator
+      .pushNamed(CrimesRoute.route, arguments: args);
+  //CrimesRoute
   void pop<T>() => _navigator.pop();
 }
 
