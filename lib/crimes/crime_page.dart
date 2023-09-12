@@ -25,7 +25,7 @@ class CrimePageState extends State<CrimePage>{
       children: widget.categoryCrimeByLocation?.map((crime)
     => ColumnTile(crime?.location?.street?.name, crime?.month,
       AppIcons.arrest, onTap: (){
-      }, horizontal: 0, trailing: Text("${crime.count}"),)).toList() ??[],
+      }, horizontal: 0 /*trailing: Text("${crime.count}")*/,)).toList() ??[],
     );
   }
 

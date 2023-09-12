@@ -24,6 +24,7 @@ dependencies:
   month_year_picker: ^0.3.0+1
   shared_preferences: ^2.2.1
   percent_indicator: ^4.2.3
+  webview_flutter: ^4.2.4
 
 dev_dependencies:
   flutter_test:

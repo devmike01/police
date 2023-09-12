@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:police/crimes/crime_args.dart';
 import 'package:police/crimes/crimes_route.dart';
 import 'package:police/neigbourhood/neigbourhood_args.dart';
+import 'package:police/news/news_details_args.dart';
 import 'package:police/stopsearch/stopsearch_args.dart';
 import '../emergency/emergency_screen.dart';
 import '../forces/forces_screen.dart';
 import '../home/home_screen.dart';
 import '../neigbourhood/neigbourhood_route.dart';
+import '../news/news_detail_webview.dart';
 import '../stopsearch/stopsearch_screen.dart';
 
 class AppNavigator{
@@ -24,6 +26,9 @@ class AppNavigator{
       .pushNamed(NeigbourhoodRoute.route, arguments: args);
   Future<T?> pushCrimesRoute<T>(CrimeArgs args) => _navigator
       .pushNamed(CrimesRoute.route, arguments: args);
+  Future<T?> pushNewsDetailsWebView<T>(NewsDetailsArgs args) => _navigator
+      .pushNamed(NewsDetailsWebView.route, arguments: args);
+  //NewsDetailsWebView
   //CrimesRoute
   void pop<T>() => _navigator.pop();
 }

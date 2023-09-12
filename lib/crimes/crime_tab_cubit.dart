@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/core/latlng.dart';
+import 'package:police/exts/list_ext.dart';
 import 'package:police/repository/police_repository.dart';
 
 import '../models/category_crime_by_location.dart';
@@ -25,25 +26,21 @@ class CrimeTabCubit extends Cubit<CrimeTabState>{
 
   CrimeTabCubit(this.date, this.lat,
       this.lng): super(InitialState()){
-    loadData(0);
+    if(titles.isEmpty) {
+      loadData(0);
+    }else{
+      loadNewData(titles[0]);
+    }
   }
 
-  void loadNewData(int pos, String? key){
+  void loadNewData(String? key){
 
     if(key == null)return;
     if(mapped[key] != null) {
 
       print("mapped ==> ${mapped[key]}");
-      final List<CategoryCrimeByLocation> newCategoryCrimes = categoryCrimes;
-      // final newList = categoryCrimes.where((element)
-      // => element.category == key).toList();
-
-      // newCategoryCrimes.forEach((element) {
-      //   element.crimes.clear();
-      //   print("object{ ==> ${element.crimes.isEmpty}");
-      // });
-      newCategoryCrimes[pos].crimes = mapped[key] ?? [];
-      emit(ChangePageState(items: newCategoryCrimes));
+      final changedData = mapped[key] ?? [];
+      emit(ChangePageState(categories: mapped.keys.toList(), crimes: changedData));
     }
   }
 
@@ -57,35 +54,37 @@ class CrimeTabCubit extends Cubit<CrimeTabState>{
 
 
     if( crimes.hasData()){
-      crimes.getData().forEach((e){
+      crimes.getData().forEachIndexed((index, e){
         final oldCate = e.category?.split("-");
         String newCate ='';
         oldCate?.forEach((element) {
           final firstChar = element.substring(0, 1).toUpperCase();
           newCate += "${firstChar + element.substring(1)} ";
         });
-        final update = mapped[newCate] ?? [];
-        final filters = update.map((cate) => cate.location
-            ?.street?.name == e.location?.street?.name);
+        final update = mapped[newCate] ?? [e];
+        int lIndex = update.indexOf(e);
 
-        if(filters.isNotEmpty){
-          e.count = update[update.length-1].count +1;
-          update[update.length-1] = e;
-        }else {
-          e.count = 1;
+        if(lIndex > -1){
+          // Recurring
+          final m = update[lIndex];
+          m.count +=1;
+          update[lIndex] = m;
+        }else{
+          // New instance
           update.add(e);
         }
 
         mapped[newCate] = update;
       });
 
+      List<CrimeAtLocation> crimesAtLoc =[];
+      // titles.clear();
       mapped.forEach((key, crimes) {
-        this.crimes.add(crimes);
-        titles.add(key);
-        categoryCrimes.add(CategoryCrimeByLocation(key, crimes));
+        crimesAtLoc.addAll(crimes);
       });
 
-      emit(ChangePageState(items: categoryCrimes));
+      emit(ChangePageState(items: categoryCrimes, crimes: crimesAtLoc,
+          categories: mapped.keys.toList()));
     }
   }
 

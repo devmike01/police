@@ -10,6 +10,7 @@ import 'package:police/home/page_state.dart';
 import '../core/latlng.dart';
 import '../forces/forces_screen.dart';
 import '../neigbourhood/neigbourhood_args.dart';
+import '../news/news_route.dart';
 import '../stopsearch/stopsearch_args.dart';
 import 'home_card.dart';
 import 'home_content_bloc.dart';
@@ -61,7 +62,7 @@ class HomeContentPages extends StatelessWidget{
     if(pageState is CrimePage){
       return CrimesRoute(CrimeArgs(locality, latLng?.lat, latLng?.lng));
     }
-    return Container();
+    return NewsRoute();
   }
 
   void navigateTo(BuildContext context, String? locality,

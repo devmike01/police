@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/location/location_bloc.dart';
 import 'package:police/home/home_content.dart';
 import 'package:police/home/home_content_bloc.dart';
+import 'package:police/news/news_bloc.dart';
 
 class HomeScreen extends StatefulWidget{
   const HomeScreen({super.key});
@@ -23,7 +24,8 @@ class HomeScreenState extends State<HomeScreen>{
     return MultiBlocProvider(
     providers: [
       BlocProvider(create: (_) => HomeContentBloc()),
-      BlocProvider(create: (_) => LocationBloc())
+      BlocProvider(create: (_) => LocationBloc()),
+      BlocProvider(create: (_) => NewsBloc()),
     ],
     child:  const Scaffold(
       body: SafeArea(

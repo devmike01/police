@@ -5,6 +5,7 @@ import 'package:police/home/home_screen.dart';
 import '../crimes/crimes_route.dart';
 import '../emergency/emergency_screen.dart';
 import '../neigbourhood/neigbourhood_route.dart';
+import '../news/news_detail_webview.dart';
 import '../stopsearch/stopsearch_screen.dart';
 
 class AppRoutes{
@@ -14,5 +15,6 @@ class AppRoutes{
     EmergencyScreen.route : (_) => const EmergencyScreen(),
     StopSearchScreen.route : (_) => const StopSearchScreen(),
     NeigbourhoodRoute.route : (_) => const NeigbourhoodRoute(),
+    NewsDetailsWebView.route : (_) => const NewsDetailsWebView()
   };
 }

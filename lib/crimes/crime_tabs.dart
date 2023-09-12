@@ -38,7 +38,7 @@ class CrimesTabs extends StatelessWidget{
         return
           SingleChildScrollView(
             child: DefaultTabController(
-            length: crimeState.items?.length ??0,
+            length: crimeState.categories?.length ??0,
             child: SizedBox(
               // height: double.maxFinite,
               child: Column(
@@ -47,16 +47,14 @@ class CrimesTabs extends StatelessWidget{
                   TabBar(
                     isScrollable :true,
                     onTap: (pos){
-                      final key = crimeState.items?[pos].category;
-                      context.read<CrimeTabCubit>().loadNewData(pos, key);
+                      final key = crimeState.categories?[pos];
+                      context.read<CrimeTabCubit>().loadNewData(key);
                     },
-                    tabs: crimeState.items?.map((e) =>
-                        Tab(child: Text( e.category),)).toList() ??[],
+                    tabs: crimeState.categories?.map((e) =>
+                        Tab(child: Text( e),)).toList() ??[],
                   ),
-                  Column(
-                    // clipBehavior: Clip.,
-                      children: crimeState.items?.map((e)
-                      => CrimePage(e.crimes)).toList() ?? [])
+                  AnimatedContainer(duration: const Duration(milliseconds: 800),
+                    child: CrimePage(crimeState.crimes ?? []),)
                 ],
               ),
             ),

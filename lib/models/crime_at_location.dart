@@ -8,7 +8,7 @@ class CrimeAtLocation {
   int? id;
   String? locationSubtype;
   String? month;
-  int count =0;
+  int count =1;
 
 
   CrimeAtLocation(

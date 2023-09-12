@@ -16,8 +16,8 @@ class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
 
   List<TopNav> topBarNavItems = [
     TopNav(true, 0, title: "Forces"),
-    TopNav(false, 1, title: "Crimes"),
-    TopNav(false, 2, title: "News")
+    TopNav(false, 2, title: "Crimes"),
+    TopNav(false, 1, title: "News")
   ];
 
   final cardColors =[Colors.blueAccent, Colors.orange,
