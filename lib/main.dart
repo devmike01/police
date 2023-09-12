@@ -5,6 +5,7 @@ import 'package:month_year_picker/month_year_picker.dart';
 import 'package:police/core/injector.dart';
 
 import 'core/routes.dart';
+import 'core/workers/notification_worker.dart';
 import 'home/home_screen.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Flutter Demo',
       localizationsDelegates: const [

@@ -7,6 +7,7 @@ import 'package:police/core/location/location_state.dart';
 import 'package:police/home/top_nav_ui.dart';
 import 'package:police/misc/app_icons.dart';
 
+import '../core/workers/notification_worker.dart';
 import '../misc/page_title.dart';
 import 'forces_banner.dart';
 import 'home_content_bloc.dart';
@@ -24,6 +25,10 @@ class HomeContent extends StatelessWidget {
     locationBloc.getCurrentLocation();
     contentBloc.changePage(0);
 
+    WidgetsBinding.instance
+        .addPostFrameCallback((timeStamp) {
+      initWorker();
+    });
 
     return BlocBuilder<HomeContentBloc, HomeState>(builder: (context, state) {
       String? locality;

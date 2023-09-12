@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/core/prefs.dart';
+import 'package:police/core/workers/notification_worker.dart';
 import 'package:police/settings/settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState>{
@@ -19,13 +20,16 @@ class SettingsCubit extends Cubit<SettingsState>{
 
   void enableCrimeNotification(bool enabled){
     _appPrefs.setEnableCrimeNotif(enabled);
+    notificationForCrime();
     emit(SettingsState(crimeNotifEnabled: enabled,
         newsNotifEnabled: state.newsNotifEnabled));
   }
 
-  void enableNewsNotification(bool enable){
-    _appPrefs.setEnableNewsNotif(enable);
-    emit(SettingsState(newsNotifEnabled: enable,
+  void enableNewsNotification(bool enabled){
+    _appPrefs.setEnableNewsNotif(enabled);
+
+    notificationForNews();
+    emit(SettingsState(newsNotifEnabled: enabled,
         crimeNotifEnabled: state.crimeNotifEnabled));
   }
 

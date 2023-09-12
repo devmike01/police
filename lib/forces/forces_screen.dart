@@ -101,19 +101,17 @@ class ForcesScreenState extends State<ForcesScreen>{
             });
           }
 
-          children.add(InkWell(
-            onTap: (){
-
-            },
-            child: Column(
-              children: forcesBloc?.state.forces?.map((force) {
-                return ColumnTile(
-                    force.name,
-                    force.country,
-                    forcesBloc?.generatePoliceIcon()
-                );
-              }).toList() ?? [],
-            ),
+          children.add(Column(
+            children: forcesBloc?.state.forces?.map((force) {
+              return ColumnTile(
+                  force.name,
+                  force.country,
+                  forcesBloc?.generatePoliceIcon(),
+                onTap: (){
+                    
+                },
+              );
+            }).toList() ?? [],
           ));
 
           return SingleChildScrollView(
