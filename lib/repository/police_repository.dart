@@ -16,6 +16,7 @@ class PoliceRepository extends Repository{
   final _prefs = getIt.get<AppPrefs>();
 
   Future<ApiClient<List<Forces>>> getForces(){
+    _policeApiClient.getForces();
     return getWork(() => _policeApiClient.getForces());
   }
 

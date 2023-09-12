@@ -25,6 +25,7 @@ dependencies:
   shared_preferences: ^2.2.1
   percent_indicator: ^4.2.3
   webview_flutter: ^4.2.4
+  settings_ui: ^2.0.2
 
 dev_dependencies:
   flutter_test:

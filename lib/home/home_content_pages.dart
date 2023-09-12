@@ -24,8 +24,6 @@ class HomeContentPages extends StatelessWidget{
   HomeContentPages(this.state, this.latLng,
       this.locality,
       this.contentBloc, {super.key}){
-
-    print("object_011 ==> ${latLng?.lat}");
   }
 
   @override

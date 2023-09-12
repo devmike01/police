@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/app_navigator.dart';
+import 'package:police/exts/buildcontext_ext.dart';
 import 'package:police/forces/force_state.dart';
 import 'package:police/forces/forces_bloc.dart';
 import 'package:police/forces/search_bloc.dart';
@@ -33,7 +34,7 @@ class ForcesScreenState extends State<ForcesScreen>{
     ForcesBloc? forcesBloc;
 
 
-    List<Widget> children = [Padding(padding: EdgeInsets.all(10),
+    List<Widget> children = [Padding(padding: const EdgeInsets.all(10),
       child: PageTitle("Police forces in the\nUnited Kingdom", showSettings: false,),)];
 
     return MultiBlocProvider(
@@ -94,14 +95,25 @@ class ForcesScreenState extends State<ForcesScreen>{
             return const Center(child: CircularProgressIndicator(),);
           }
 
-          children.add(Column(
-            children: forcesBloc?.state.forces?.map((force) {
-              return ColumnTile(
-                force.name,
-                force.country,
-                forcesBloc?.generatePoliceIcon()
-              );
-            }).toList() ?? [],
+          if(state.error != null){
+            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+              context.showSnackbar(Text("${state.error}"));
+            });
+          }
+
+          children.add(InkWell(
+            onTap: (){
+
+            },
+            child: Column(
+              children: forcesBloc?.state.forces?.map((force) {
+                return ColumnTile(
+                    force.name,
+                    force.country,
+                    forcesBloc?.generatePoliceIcon()
+                );
+              }).toList() ?? [],
+            ),
           ));
 
           return SingleChildScrollView(

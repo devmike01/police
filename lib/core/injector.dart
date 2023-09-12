@@ -13,7 +13,8 @@ final getIt = GetIt.instance;
 
 void setup() {
   getIt.registerSingleton<Dio>(
-      Dio(BaseOptions(baseUrl: UKPoliceApi.baseUrl))
+      Dio(BaseOptions(baseUrl: UKPoliceApi.baseUrl)),
+      instanceName: UKPoliceApi.policeDio
   );
 
 

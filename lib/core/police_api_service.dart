@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/core/latlng.dart';
+import 'package:police/core/uk_police_api.dart';
 import 'package:police/models/crime_at_location.dart';
 import 'package:police/models/stopsearch.dart';
 
@@ -17,12 +18,11 @@ import 'core_client.dart';
 
 class PoliceApiClient extends CoreClient{
 
-  final _dio = getIt.get<Dio>();
+  final _dio = getIt.get<Dio>(instanceName: UKPoliceApi.policeDio);
 
   Future<List<Forces>> getForces() async{
      final result = await _dio.getApi("/forces");
-     final decoded = jsonDecode(jsonEncode(result.data));
-     List<Forces> forces = List.from(decoded).map((e){
+     List<Forces> forces = List.from(result).map((e){
        return Forces.fromJson(e);
      }).toList();
     return forces;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:police/core/app_navigator.dart';
 import 'package:police/core/latlng.dart';
 import 'package:police/core/location/location_bloc.dart';
 import 'package:police/core/location/location_state.dart';
@@ -32,7 +33,10 @@ class HomeContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PageTitle(state.title, showSettings: true,),
+            PageTitle(state.title, showSettings: true,
+                onSettingsClicked: (){
+                  context.router.pushSettingsRoute();
+                }),
             TopNavBar(
               contentBloc.topBarNavItems,
               onSelect: (index) {
@@ -50,9 +54,6 @@ class HomeContent extends StatelessWidget {
               final placemark = cLocationState.placemarks?.first;
               locality = placemark?.locality;
               latLng = cLocationState.latlng;
-
-
-              print("object_01 ==> ${latLng?.lat}");
 
               // Change banner content
               return Column(

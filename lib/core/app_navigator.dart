@@ -10,6 +10,7 @@ import '../forces/forces_screen.dart';
 import '../home/home_screen.dart';
 import '../neigbourhood/neigbourhood_route.dart';
 import '../news/news_detail_webview.dart';
+import '../settings/settings_route.dart';
 import '../stopsearch/stopsearch_screen.dart';
 
 class AppNavigator{
@@ -29,7 +30,8 @@ class AppNavigator{
       .pushNamed(CrimesRoute.route, arguments: args);
   Future<T?> pushNewsDetailsWebView<T>(NewsDetailsArgs args) => _navigator
       .pushNamed(NewsDetailsWebView.route, arguments: args);
-  //NewsDetailsWebView
+  Future<T?> pushSettingsRoute<T>() => _navigator.pushNamed(SettingsRoute.route);
+
   //CrimesRoute
   void pop<T>() => _navigator.pop();
 }

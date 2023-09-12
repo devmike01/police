@@ -9,16 +9,11 @@ class AppPrefs {
   
   static const PREF_PLACEMARK ="AppPrefs.PREF_PLACEMARK";
   static const PREF_CRIME_CATEGORIES =".PREF_CRIME_CATEGORIES";
-
-  AppPrefs(){
-   // clear();
-  }
+  static const PREF_NOTIFICATION_CRIME =".PREF_NOTIFICATION_CRIME";
+  static const PREF_NOTIFICATION_NEWS =".PREF_NOTIFICATION_NEWS";
 
 
-  Future<bool> clear()async{
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.clear();
-  }
+  AppPrefs();
 
   void setPosition(Position? position) async{
     if(position == null){
@@ -68,5 +63,32 @@ class AppPrefs {
         .map((e) => CrimeCategory.fromJson(e)).toList();
     return crimeCategories;
   }
-  
+
+  void setEnableCrimeNotif(bool enabled) async{
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool(PREF_NOTIFICATION_CRIME, enabled);
+  }
+
+  void setEnableNewsNotif(bool enabled) async{
+    final pref = await SharedPreferences.getInstance();
+    pref.setBool(PREF_NOTIFICATION_NEWS, enabled);
+  }
+
+
+  Future<bool> enableNewsNotif() async{
+    final pref = await SharedPreferences.getInstance();
+    return pref.getBool(PREF_NOTIFICATION_NEWS) ?? false;
+  }
+
+  Future<bool> enableCrimeNotif() async{
+    final pref = await SharedPreferences.getInstance();
+    return pref.getBool(PREF_NOTIFICATION_CRIME) ?? false;
+  }
+
+  Future<bool> clear()async{
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.clear();
+  }
+
+
 }
