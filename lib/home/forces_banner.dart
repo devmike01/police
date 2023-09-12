@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:police/misc/app_icons.dart';
 
 import '../core/loading_text.dart';
 

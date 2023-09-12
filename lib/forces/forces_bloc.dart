@@ -6,7 +6,6 @@ import 'package:police/forces/force_state.dart';
 import 'package:police/forces/forces_event.dart';
 
 import '../misc/app_icons.dart';
-import '../models/forces.dart';
 import '../repository/police_repository.dart';
 
 class ForcesBloc extends Bloc<ForcesEvent, ForcesState>{

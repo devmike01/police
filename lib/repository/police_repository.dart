@@ -9,10 +9,7 @@ import '../core/api_client_state.dart';
 import '../core/latlng.dart';
 import '../core/police_api_service.dart';
 import '../core/repository.dart';
-import '../models/category_crime_by_location.dart';
-import '../models/find_neigbourhood.dart';
 import '../models/forces.dart';
-import '../models/neigbourhood_details.dart';
 
 class PoliceRepository extends Repository{
   final _policeApiClient = getIt.get<PoliceApiClient>();

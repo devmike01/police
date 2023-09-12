@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../core/injector.dart';
-
 
 extension DioExt on Dio{
   Future<dynamic> getApi(String path, {Map<String, dynamic>? queryParameters}) async{

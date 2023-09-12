@@ -1,12 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/injector.dart';
-import 'package:police/core/latlng.dart';
 import 'package:police/exts/list_ext.dart';
 import 'package:police/repository/police_repository.dart';
 
 import '../models/category_crime_by_location.dart';
 import '../models/crime_at_location.dart';
-import 'crime_page.dart';
 import 'crime_tabs_state.dart';
 
 class CrimeTabCubit extends Cubit<CrimeTabState>{

@@ -3,8 +3,6 @@ import 'package:police/misc/app_icons.dart';
 import 'package:police/models/crime_at_location.dart';
 import 'package:police/widgets/column_tile.dart';
 
-import '../models/category_crime_by_location.dart';
-
 class CrimePage extends StatefulWidget {
 
   List<CrimeAtLocation>? categoryCrimeByLocation;

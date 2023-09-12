@@ -1,5 +1,4 @@
 import 'package:police/home/page_state.dart';
-import 'package:police/home/top_nav.dart';
 
 class HomeState{
   int page;

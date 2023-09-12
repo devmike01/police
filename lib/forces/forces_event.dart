@@ -1,4 +1,4 @@
-import '../models/forces.dart';
+
 
 abstract class ForcesEvent{}
 class GetForcesEvent extends ForcesEvent{

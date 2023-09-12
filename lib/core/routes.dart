@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:police/forces/forces_screen.dart';
 import 'package:police/home/home_screen.dart';
 
-import '../crimes/crimes_route.dart';
 import '../emergency/emergency_screen.dart';
 import '../neigbourhood/neigbourhood_route.dart';
 import '../news/news_detail_webview.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:police/exts/dynamic_ext.dart';
 
 import 'crime_args.dart';
 import 'crime_tab_cubit.dart';

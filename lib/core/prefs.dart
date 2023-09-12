@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/crime_category.dart';
-import 'location/location_state.dart';
 
 class AppPrefs {
   

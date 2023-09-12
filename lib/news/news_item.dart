@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:police/core/app_navigator.dart';
-import 'package:police/misc/app_icons.dart';
 import 'package:police/models/live_news.dart';
 import 'package:police/news/news_details_args.dart';
 

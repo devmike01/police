@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/app_navigator.dart';
-import 'package:police/core/injector.dart';
 import 'package:police/forces/force_state.dart';
 import 'package:police/forces/forces_bloc.dart';
 import 'package:police/forces/search_bloc.dart';
 import 'package:police/forces/search_state.dart';
 import 'package:police/misc/page_title.dart';
-import 'package:police/models/forces.dart';
 
 import '../widgets/column_tile.dart';
 

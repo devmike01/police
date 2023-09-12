@@ -7,7 +7,6 @@ import 'package:police/stopsearch/stopsearch_state.dart';
 
 import '../models/stopsearch.dart';
 import '../repository/police_repository.dart';
-import 'dart:math';
 import 'indexed_stopsearch.dart';
 
 class StopSearchBloc extends Bloc<StopSearchEvent, StopSearchState>{

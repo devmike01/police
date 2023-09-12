@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/core/latlng.dart';
-import 'package:police/core/prefs.dart';
 import 'package:police/location/app_geolocator.dart';
 
 import 'location_state.dart';

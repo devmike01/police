@@ -1,7 +1,5 @@
 import 'package:police/stopsearch/indexed_stopsearch.dart';
 
-import '../models/stopsearch.dart';
-
 class StopSearchState{
 
   List<PercentStopSearch>? stopSearchList;

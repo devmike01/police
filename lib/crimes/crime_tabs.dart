@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/crimes/crime_tab_cubit.dart';
 import 'package:police/crimes/crime_tabs_state.dart';
-import 'package:police/crimes/crimes_bloc.dart';
 import 'package:police/exts/dynamic_ext.dart';
 import 'package:police/widgets/error_widget.dart';
 
-import 'crime_args.dart';
 import 'crime_page.dart';
 
 class CrimesTabs extends StatelessWidget{

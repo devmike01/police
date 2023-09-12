@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:police/core/injector.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:month_year_picker/month_year_picker.dart';
+import 'package:police/core/injector.dart';
+
 import 'core/routes.dart';
 import 'home/home_screen.dart';
-import 'package:month_year_picker/month_year_picker.dart';
 
 void main() {
   setup();

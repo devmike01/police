@@ -1,7 +1,6 @@
 import 'package:police/models/crime_at_location.dart';
 
 import '../models/category_crime_by_location.dart';
-import 'crime_page.dart';
 
 abstract class CrimeTabState{}
 class ChangePageState extends CrimeTabState{

@@ -4,11 +4,9 @@ import 'package:police/exts/dynamic_ext.dart';
 import 'package:police/neigbourhood/neigbourhood_bloc.dart';
 import 'package:police/widgets/column_tile.dart';
 
-import '../home/forces_banner.dart';
 import '../misc/app_icons.dart';
 import '../misc/app_strings.dart';
 import '../misc/page_title.dart';
-import '../stopsearch/stopsearch_bloc.dart';
 import '../widgets/error_widget.dart';
 import 'neigbourhood_args.dart';
 import 'neigbourhood_state.dart';

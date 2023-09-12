@@ -11,13 +11,13 @@ class LiveNews {
     if (json['articles'] != null) {
       articles = <Articles>[];
       json['articles'].forEach((v) {
-        articles!.add(new Articles.fromJson(v));
+        articles!.add(Articles.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['status'] = this.status;
     data['totalResults'] = this.totalResults;
     if (this.articles != null) {
@@ -40,20 +40,20 @@ class Articles {
     title = json['title'];
     author = json['author'];
     source =
-    json['source'] != null ? new Source.fromJson(json['source']) : null;
+    json['source'] != null ? Source.fromJson(json['source']) : null;
     publishedAt = json['publishedAt'];
     url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['author'] = this.author;
-    if (this.source != null) {
-      data['source'] = this.source!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['author'] = author;
+    if (source != null) {
+      data['source'] = source!.toJson();
     }
-    data['publishedAt'] = this.publishedAt;
-    data['url'] = this.url;
+    data['publishedAt'] = publishedAt;
+    data['url'] = url;
     return data;
   }
 }

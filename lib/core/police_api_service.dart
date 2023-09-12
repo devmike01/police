@@ -1,18 +1,16 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:police/core/api_client_state.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/core/latlng.dart';
-import 'package:police/exts/dynamic_ext.dart';
 import 'package:police/models/crime_at_location.dart';
 import 'package:police/models/stopsearch.dart';
 
 import '../exts/api_ext.dart';
 import '../models/crime_category.dart';
 import '../models/find_neigbourhood.dart';
-import '../models/forces.dart';
 import '../models/force_neigbourhood.dart';
+import '../models/forces.dart';
 import '../models/neigbourhood_details.dart';
 import '../models/neigbourhood_events.dart';
 import 'core_client.dart';
