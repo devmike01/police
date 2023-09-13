@@ -9,6 +9,7 @@ import '../location/app_geolocator.dart';
 import '../repository/map_repo.dart';
 import '../repository/news_repo.dart';
 import '../repository/police_repository.dart';
+import 'auto_caller.dart';
 
 final getIt = GetIt.instance;
 
@@ -36,5 +37,7 @@ void setup() {
   getIt.registerSingleton(NewsRepository());
 
   getIt.registerSingleton(MapRepo());
+
+  getIt.registerSingleton(AutoCaller());
 
 }

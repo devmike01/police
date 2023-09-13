@@ -6,6 +6,7 @@ import 'package:police/home/page_state.dart';
 import 'package:police/home/top_nav.dart';
 import 'package:police/home/top_nav_pages_event.dart';
 
+import '../core/auto_caller.dart';
 import '../misc/app_icons.dart';
 import '../misc/app_strings.dart';
 import '../repository/police_repository.dart';
@@ -13,6 +14,8 @@ import '../repository/police_repository.dart';
 class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
 
   final _homeRepository = getIt.get<PoliceRepository>();
+
+  final _directCall = getIt.get<AutoCaller>();
 
   List<TopNav> topBarNavItems = [
     TopNav(true, 0, title: "Forces"),
@@ -56,6 +59,10 @@ class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
         add(CrimesEvent());
       }
     }
+  }
+
+  void placeEmergencyCall(){
+    _directCall.emergencyCall();
   }
 
 }

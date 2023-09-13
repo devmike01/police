@@ -4,6 +4,9 @@ import 'package:police/core/location/location_bloc.dart';
 import 'package:police/home/home_content.dart';
 import 'package:police/home/home_content_bloc.dart';
 import 'package:police/news/news_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../core/uk_police_api.dart';
 
 class HomeScreen extends StatefulWidget{
   const HomeScreen({super.key});
@@ -27,15 +30,7 @@ class HomeScreenState extends State<HomeScreen>{
       BlocProvider(create: (_) => LocationBloc()),
       BlocProvider(create: (_) => NewsBloc()),
     ],
-    child:  const Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(top: 40),
-              child: HomeContent(),
-            ),
-          )),
-    ),);
+    child: const HomeContent(),);
   }
 
 }

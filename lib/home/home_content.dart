@@ -33,50 +33,66 @@ class HomeContent extends StatelessWidget {
     return BlocBuilder<HomeContentBloc, HomeState>(builder: (context, state) {
       String? locality;
       LatLng? latLng;
-      return SizedBox(
-        //height: 500,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      return   Scaffold(
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PageTitle(state.title, showSettings: true,
-                onSettingsClicked: (){
-                  context.router.pushSettingsRoute();
-                }),
-            TopNavBar(
-              contentBloc.topBarNavItems,
-              onSelect: (index) {
-                contentBloc.changePage(index);
-              },
-            ),
-            BlocBuilder<LocationBloc, LocationState>(builder: (context, locState){
-              if(locState is None){
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              final cLocationState = locState as CurrentLocationState;
-
-              final placemark = cLocationState.placemarks?.first;
-              locality = placemark?.locality;
-              latLng = cLocationState.latlng;
-
-              // Change banner content
-              return Column(
-                children: [
-                  ForcesBanner(
-                      AppIcons.currentLocation,
-                      placemark?.street,
-                      placemark?.locality
-                  ),
-                  Padding(padding: const EdgeInsets.all(20),
-                      child: HomeContentPages(state, latLng, locality, contentBloc))
-                ],
-              );
-            }),
-
+            FloatingActionButton(onPressed: (){
+              context.read<HomeContentBloc>().placeEmergencyCall();
+            }, child: Icon(Icons.emergency_outlined),)
           ],
         ),
-      );
+        body:  SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(top: 40),
+                child: SizedBox(
+                  //height: 500,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      PageTitle(state.title, showSettings: true,
+                          onSettingsClicked: (){
+                            context.router.pushSettingsRoute();
+                          }),
+                      TopNavBar(
+                        contentBloc.topBarNavItems,
+                        onSelect: (index) {
+                          contentBloc.changePage(index);
+                        },
+                      ),
+                      BlocBuilder<LocationBloc, LocationState>(builder: (context, locState){
+                        if(locState is None){
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        final cLocationState = locState as CurrentLocationState;
+
+                        final placemark = cLocationState.placemarks?.first;
+                        locality = placemark?.locality;
+                        latLng = cLocationState.latlng;
+
+                        // Change banner content
+                        return Column(
+                          children: [
+                            ForcesBanner(
+                                AppIcons.currentLocation,
+                                placemark?.street,
+                                placemark?.locality
+                            ),
+                            Padding(padding: const EdgeInsets.all(20),
+                                child: HomeContentPages(state, latLng, locality, contentBloc))
+                          ],
+                        );
+                      }),
+
+                    ],
+                  ),
+                ),
+              ),
+            )),
+      ) ;
     });
   }
 }

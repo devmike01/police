@@ -18,10 +18,13 @@ class ForcesBloc extends Bloc<ForcesEvent, ForcesState>{
         final forces = await _repo.getForces();
         var forceList = forces.data;
         if(event.searchText != null){
-          forceList = forceList?.where((element) {
+          final searchedForces = forceList?.where((element) {
             return element.name.toLowerCase()
                 .startsWith(event.searchText?.toLowerCase() ??'');
           }).toList();
+          print("ForcesBloc ===> $searchedForces");
+          return emit(ForcesState(forces: searchedForces,
+              isLoading: false));
         }
 
         if(event.searchText ==""){
