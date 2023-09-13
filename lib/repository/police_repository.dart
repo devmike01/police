@@ -2,6 +2,7 @@ import 'package:police/core/injector.dart';
 import 'package:police/core/prefs.dart';
 import 'package:police/models/crime_at_location.dart';
 import 'package:police/models/crime_category.dart';
+import 'package:police/models/force_details.dart';
 import 'package:police/models/force_neigbourhood.dart';
 import 'package:police/models/stopsearch.dart';
 
@@ -23,6 +24,10 @@ class PoliceRepository extends Repository{
   Future<ApiClient<List<StopSearch>>> getStopSearches(double lat,
       double lng, String date){
     return getWork(() => _policeApiClient.getStopSearchHistory(lat, lng, date));
+  }
+
+  Future<ApiClient<ForceDetails>> getForceDetails(String forceId){
+    return getWork(() => _policeApiClient.getForceDetails(forceId));
   }
 
   Future<ApiClient<List<ForceNeigbourhood>>> getFindNeigbourhood(String neigbourhood){

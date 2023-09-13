@@ -27,6 +27,7 @@ dependencies:
   webview_flutter: ^4.2.4
   settings_ui: ^2.0.2
   workmanager: ^0.5.1
+  speech_to_text: ^6.3.0
 
 dev_dependencies:
   flutter_test:

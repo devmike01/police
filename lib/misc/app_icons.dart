@@ -9,6 +9,7 @@ class AppIcons{
   static var currentLocation = "business_location".png();
   static var policeCap ="police_cap".png();
   static var arrest ="arrest".png();
+  static const ukPolice ="assets/images/uk_police_group.jpg";
 
   static var policeIcons = [policeType1, policeType3, policeType5];
 }

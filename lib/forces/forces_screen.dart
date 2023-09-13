@@ -108,7 +108,7 @@ class ForcesScreenState extends State<ForcesScreen>{
                   force.country,
                   forcesBloc?.generatePoliceIcon(),
                 onTap: (){
-                    
+                    context.router.pushForceDetailsRoute(force.id);
                 },
               );
             }).toList() ?? [],

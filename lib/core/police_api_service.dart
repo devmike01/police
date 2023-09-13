@@ -5,6 +5,7 @@ import 'package:police/core/injector.dart';
 import 'package:police/core/latlng.dart';
 import 'package:police/core/uk_police_api.dart';
 import 'package:police/models/crime_at_location.dart';
+import 'package:police/models/force_details.dart';
 import 'package:police/models/stopsearch.dart';
 
 import '../exts/api_ext.dart';
@@ -26,6 +27,11 @@ class PoliceApiClient extends CoreClient{
        return Forces.fromJson(e);
      }).toList();
     return forces;
+  }
+
+  Future<ForceDetails> getForceDetails(String forceId)async{
+    final result = await _dio.getApi("/forces/$forceId");
+    return ForceDetails.fromJson(result);
   }
 
   Future<List<StopSearch>> getStopSearchHistory(double lat, double lng,

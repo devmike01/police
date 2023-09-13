@@ -6,6 +6,7 @@ import 'package:police/news/news_details_args.dart';
 import 'package:police/stopsearch/stopsearch_args.dart';
 
 import '../emergency/emergency_screen.dart';
+import '../forces/force_details_route.dart';
 import '../forces/forces_screen.dart';
 import '../home/home_screen.dart';
 import '../neigbourhood/neigbourhood_route.dart';
@@ -31,7 +32,8 @@ class AppNavigator{
   Future<T?> pushNewsDetailsWebView<T>(NewsDetailsArgs args) => _navigator
       .pushNamed(NewsDetailsWebView.route, arguments: args);
   Future<T?> pushSettingsRoute<T>() => _navigator.pushNamed(SettingsRoute.route);
-
+  Future<T?> pushForceDetailsRoute<T>(String forceId)
+  => _navigator.pushNamed(ForceDetailsRoute.route, arguments: forceId);
   //CrimesRoute
   void pop<T>() => _navigator.pop();
 }

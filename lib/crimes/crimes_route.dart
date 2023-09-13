@@ -19,12 +19,10 @@ class CrimesRoute extends StatelessWidget{
     final dateTime = DateTime.now();
 
 
-    return SizedBox(
-      //height: 500,
-      child: BlocProvider(
-          create: (_) => CrimeTabCubit("${dateTime.year}-${dateTime.month < 2 ? dateTime.month : 1}",
-              crimeArgs.lat ??0, crimeArgs.lng ??0),
-          child: CrimesTabs(crimeArgs.locality)),
+    return BlocProvider(
+        create: (_) => CrimeTabCubit("${dateTime.year}-${dateTime.month < 2 ? dateTime.month : 1}",
+            crimeArgs.lat ??0, crimeArgs.lng ??0),
+        child: CrimesTabs(crimeArgs.locality)
     );
   }
 
