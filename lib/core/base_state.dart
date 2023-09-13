@@ -5,4 +5,5 @@ abstract class BaseState<T>{
 
   bool get hasData => data != null;
   bool get hasError => message != null;
+  String get requiredMsg => message ??"";
 }

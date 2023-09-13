@@ -9,6 +9,8 @@ import '../emergency/emergency_screen.dart';
 import '../forces/force_details_route.dart';
 import '../forces/forces_screen.dart';
 import '../home/home_screen.dart';
+import '../neigbourhood/neigbourhood_details_arg.dart';
+import '../neigbourhood/neigbourhood_details_route.dart';
 import '../neigbourhood/neigbourhood_route.dart';
 import '../news/news_detail_webview.dart';
 import '../settings/settings_route.dart';
@@ -34,6 +36,8 @@ class AppNavigator{
   Future<T?> pushSettingsRoute<T>() => _navigator.pushNamed(SettingsRoute.route);
   Future<T?> pushForceDetailsRoute<T>(String forceId)
   => _navigator.pushNamed(ForceDetailsRoute.route, arguments: forceId);
+  Future<T?> pushNeigbourhoodDetailsRoute<T>(NeigbourhoodDetailsArg arg) => _navigator
+      .pushNamed(NeigbourhoodDetailsRoute.route, arguments: arg);
   //CrimesRoute
   void pop<T>() => _navigator.pop();
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:police/core/app_navigator.dart';
 import 'package:police/exts/dynamic_ext.dart';
 import 'package:police/neigbourhood/neigbourhood_bloc.dart';
+import 'package:police/neigbourhood/neigbourhood_details_arg.dart';
 import 'package:police/widgets/column_tile.dart';
 
 import '../misc/app_icons.dart';
@@ -63,7 +65,12 @@ class NeigbourhoodRouteState extends State<NeigbourhoodRoute>{
                     children: [
                       Column(
                         children: neigbourForces?.map((e) => ColumnTile(e.name,
-                            args.locality, AppIcons.currentLocation)).toList() ?? [],
+                            args.locality, AppIcons.currentLocation, onTap: (){
+                          context.router
+                              .pushNeigbourhoodDetailsRoute(
+                              NeigbourhoodDetailsArg(e.forceId ??"",
+                                  e.id ?? ""));
+                          },)).toList() ?? [],
                       )
                     ],
                   );

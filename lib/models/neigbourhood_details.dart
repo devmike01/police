@@ -136,12 +136,12 @@ class Centre {
 
 class Locations {
   String? name;
-  Null? longitude;
+  double? longitude;
   String? postcode;
   String? address;
-  Null? latitude;
+  double? latitude;
   String? type;
-  Null? description;
+  String? description;
 
   Locations(
       {this.name,

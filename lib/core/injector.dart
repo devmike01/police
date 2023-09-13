@@ -6,6 +6,7 @@ import 'package:police/core/prefs.dart';
 import 'package:police/core/uk_police_api.dart';
 
 import '../location/app_geolocator.dart';
+import '../repository/map_repo.dart';
 import '../repository/news_repo.dart';
 import '../repository/police_repository.dart';
 
@@ -33,5 +34,7 @@ void setup() {
   getIt.registerSingleton(NewsApiClient());
 
   getIt.registerSingleton(NewsRepository());
+
+  getIt.registerSingleton(MapRepo());
 
 }

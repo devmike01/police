@@ -1,8 +1,9 @@
 class ForceNeigbourhood {
   String? id;
   String? name;
+  String? forceId;
 
-  ForceNeigbourhood({this.id, this.name});
+  ForceNeigbourhood({this.id, this.name, this.forceId});
 
   ForceNeigbourhood.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -11,6 +11,7 @@ import '../core/latlng.dart';
 import '../core/police_api_service.dart';
 import '../core/repository.dart';
 import '../models/forces.dart';
+import '../models/neigbourhood_details.dart';
 
 class PoliceRepository extends Repository{
   final _policeApiClient = getIt.get<PoliceApiClient>();
@@ -56,6 +57,11 @@ class PoliceRepository extends Repository{
       return crimes.where((crime) => crime.category == categoryId).toList();
     });
 
+  }
+
+  Future<ApiClient<NeigbourhoodDetails>> neigbourhoodDetails(final String neigbourhood,
+      final String nCode){
+    return getWork(() => _policeApiClient.getNeigbourhoodDetails(neigbourhood, nCode));
   }
 
   Future<ApiClient<List<CrimeAtLocation>>> crimeAtLocation(

@@ -22,4 +22,13 @@ class ApiClient<T>{
     return errorMsg!;
   }
 
+  factory ApiClient.success(T data){
+    return ApiClient(data: data);
+  }
+
+
+  factory ApiClient.error(String error){
+    return ApiClient(errorMsg: error);
+  }
+
 }

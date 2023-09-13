@@ -56,7 +56,12 @@ class PoliceApiClient extends CoreClient{
   Future<List<ForceNeigbourhood>> getForceNeigbourhoods(String neigbourhood) async{
     final result = await _dio.getApi("/$neigbourhood/neighbourhoods");
     List<ForceNeigbourhood> forceNeigbourhoods = List.from(result)
-        .map((e) => ForceNeigbourhood.fromJson(e)).toList();
+        .map((e){
+
+          final nForce = ForceNeigbourhood.fromJson(e);
+          nForce.forceId = neigbourhood;
+          return nForce;
+    }).toList();
     return forceNeigbourhoods;
   }
 
@@ -79,7 +84,7 @@ class PoliceApiClient extends CoreClient{
 
 
   Future<List<CrimeAtLocation>> getCrimes(String date, double lat, double lng) async{
-    print("object_error ==> $date, $lat, $lng");
+
     final result = await _dio.getApi("/crimes-street/all-crime", queryParameters: {
       'date' : date,
       'lat': lat,

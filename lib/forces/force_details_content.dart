@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:police/forces/force_details_state.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../misc/app_icons.dart';
 import 'force_detail_card.dart';
@@ -24,7 +25,7 @@ class ForceDetailsContent extends StatelessWidget{
         // Add the app bar to the CustomScrollView.
         SliverAppBar(
           snap: true,
-          surfaceTintColor: Colors.black45,
+          pinned: true,
     collapsedHeight: 140,
           title: Text(details?.name ??"", style: Theme
               .of(context).textTheme.titleLarge?.copyWith(fontSize: 20,
@@ -40,7 +41,10 @@ class ForceDetailsContent extends StatelessWidget{
                   margin: EdgeInsets.only(top: 150),
                   child: Wrap(
                     children: [ForceDetailCard(title: 'Telephone',
-                        subtitle: details?.telephone ??ForceDetailsRoute.notAvailable, subTitleSize : 24)],
+                        subtitle: details?.telephone ??ForceDetailsRoute.notAvailable,
+                        subTitleSize : 24, trailing: IconButton(onPressed: (){
+                        launchUrl(Uri.parse('tel:${details?.telephone}'));
+                      }, icon: const Icon(Icons.phone, color: Colors.white,)),)],
                   ),
                 )
               ],
