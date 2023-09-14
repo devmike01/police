@@ -80,6 +80,15 @@ class SettingsRouteState extends State<SettingsRoute>{
                             .openLicense();
                       },
                     ),
+                    SettingsTile.navigation(
+                      leading: const Icon(Icons.abc_outlined),
+                      title: const Text('About'),
+                      value: const Text('About '),
+                      onPressed: (_){
+                        context.read<SettingsCubit>()
+                            .openLicense();
+                      },
+                    )
                   ],
                 )
               ],

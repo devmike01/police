@@ -29,6 +29,7 @@ dependencies:
   workmanager: ^0.5.1
   speech_to_text: ^6.3.0
   flutter_phone_direct_caller: ^2.1.1
+#  google_mobile_ads: ^3.0.0
 
 dev_dependencies:
   flutter_test:
