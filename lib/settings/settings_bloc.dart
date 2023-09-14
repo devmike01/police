@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:police/core/injector.dart';
 import 'package:police/core/prefs.dart';
 import 'package:police/core/workers/notification_worker.dart';
+import 'package:police/models/license.dart';
 import 'package:police/settings/settings_state.dart';
 
 class SettingsCubit extends Cubit<SettingsState>{
@@ -34,6 +35,8 @@ class SettingsCubit extends Cubit<SettingsState>{
   }
 
   void openLicense(){
-    // emit(OpenLicenceState());
+     emit(SettingsState(newsNotifEnabled: state.newsNotifEnabled,
+         crimeNotifEnabled: state.crimeNotifEnabled,
+         licenceState: OpenLicenceState()));
   }
 }

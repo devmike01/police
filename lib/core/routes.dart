@@ -7,6 +7,7 @@ import '../forces/force_details_route.dart';
 import '../neigbourhood/neigbourhood_details_route.dart';
 import '../neigbourhood/neigbourhood_route.dart';
 import '../news/news_detail_webview.dart';
+import '../settings/license.dart';
 import '../settings/settings_route.dart';
 import '../stopsearch/stopsearch_screen.dart';
 
@@ -21,5 +22,6 @@ class AppRoutes{
     SettingsRoute.route : (_) => const SettingsRoute(),
     ForceDetailsRoute.route : (_) => const ForceDetailsRoute(),
     NeigbourhoodDetailsRoute.route : (_) => const NeigbourhoodDetailsRoute(),
+    LicenseRoute.route : (_) => const LicenseRoute()
   };
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:police/core/app_navigator.dart';
 import 'package:police/settings/settings_bloc.dart';
 import 'package:police/settings/settings_state.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -35,6 +36,13 @@ class SettingsRouteState extends State<SettingsRoute>{
               );
             }
 
+            print("new_state: $state");
+            if(state.licenceState is OpenLicenceState){
+              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                context.router.pushLicenseRoute();
+              });
+            }
+
             return SettingsList(
               sections: [
                 SettingsSection(
@@ -66,7 +74,7 @@ class SettingsRouteState extends State<SettingsRoute>{
                     SettingsTile.navigation(
                       leading: const Icon(Icons.abc_outlined),
                       title: const Text('Licence'),
-                      value: const Text('Enable notification for crimes near you'),
+                      value: const Text('Licence for icons and illustrations used'),
                       onPressed: (_){
                         context.read<SettingsCubit>()
                             .openLicense();

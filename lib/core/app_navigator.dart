@@ -13,6 +13,7 @@ import '../neigbourhood/neigbourhood_details_arg.dart';
 import '../neigbourhood/neigbourhood_details_route.dart';
 import '../neigbourhood/neigbourhood_route.dart';
 import '../news/news_detail_webview.dart';
+import '../settings/license.dart';
 import '../settings/settings_route.dart';
 import '../stopsearch/stopsearch_screen.dart';
 
@@ -38,6 +39,7 @@ class AppNavigator{
   => _navigator.pushNamed(ForceDetailsRoute.route, arguments: forceId);
   Future<T?> pushNeigbourhoodDetailsRoute<T>(NeigbourhoodDetailsArg arg) => _navigator
       .pushNamed(NeigbourhoodDetailsRoute.route, arguments: arg);
+  Future<T?> pushLicenseRoute<T>() => _navigator.pushNamed(LicenseRoute.route);
   //CrimesRoute
   void pop<T>() => _navigator.pop();
 }

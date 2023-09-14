@@ -2,9 +2,11 @@ class SettingsState{
   bool crimeNotifEnabled;
   bool newsNotifEnabled;
   bool loading;
+  OpenLicenceState? licenceState;
 
   SettingsState({this.crimeNotifEnabled =false,
-    this.newsNotifEnabled =false, this.loading=false});
+    this.newsNotifEnabled =false, this.loading=false,
+    this.licenceState});
 
   SettingsState copy({bool? crimeNotifEnabled, bool? newsNotifEnabled}){
     if((newsNotifEnabled != this.newsNotifEnabled)
@@ -35,13 +37,9 @@ class SettingsState{
 //
 // }
 //
-// class OpenLicenceState extends SettingsState{
-//   @override
-//   bool enable =false;
-//
-//   OpenLicenceState();
-//
-// }
+class OpenLicenceState{
+  OpenLicenceState();
+}
 //
 // class NoneState extends SettingsState{
 //
