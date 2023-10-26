@@ -24,11 +24,10 @@ void setup() {
       Dio(BaseOptions(baseUrl: UKPoliceApi.newsBaseUrl)), instanceName: UKPoliceApi.newDio
   );
 
-  getIt.registerSingleton(AppPrefs());
 
-  getIt.registerSingleton<PoliceApiClient>(PoliceApiClient());
+  registerStorage();
 
-  getIt.registerSingleton(PoliceRepository());
+  registerPoliceAPI();
 
   getIt.registerSingleton(AppGeolocator());
 
@@ -39,5 +38,32 @@ void setup() {
   getIt.registerSingleton(MapRepo());
 
   getIt.registerSingleton(AutoCaller());
+
+}
+
+void registerDio(){
+  getIt.registerSingleton<Dio>(
+      Dio(BaseOptions(baseUrl: UKPoliceApi.baseUrl)),
+      instanceName: UKPoliceApi.policeDio
+  );
+
+}
+
+void registerPoliceAPI(){
+  //registerDio();
+  getIt.registerSingleton<PoliceApiClient>(PoliceApiClient());
+
+  getIt.registerSingleton(PoliceRepository());
+}
+
+void registerNetworkAPI(){
+  registerDio();
+  getIt.registerSingleton(NewsApiClient());
+  getIt.registerSingleton(NewsRepository());
+}
+
+void registerStorage(){
+
+  getIt.registerSingleton(AppPrefs());
 
 }

@@ -30,7 +30,7 @@ class HomeScreenState extends State<HomeScreen>{
       BlocProvider(create: (_) => LocationBloc()),
       BlocProvider(create: (_) => NewsBloc()),
     ],
-    child: const HomeContent(),);
+    child: HomeContent(),);
   }
 
 }

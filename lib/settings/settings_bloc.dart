@@ -5,8 +5,13 @@ import 'package:police/core/workers/notification_worker.dart';
 import 'package:police/models/license.dart';
 import 'package:police/settings/settings_state.dart';
 
+import '../core/news_api_client.dart';
+import '../core/police_api_service.dart';
+
 class SettingsCubit extends Cubit<SettingsState>{
 
+  static final newsApi = getIt.get<NewsApiClient>();
+  static final crimeApi = getIt.get<PoliceApiClient>();
   final _appPrefs = getIt.get<AppPrefs>();
 
   SettingsCubit(): super(SettingsState(loading: true)){
@@ -21,7 +26,7 @@ class SettingsCubit extends Cubit<SettingsState>{
 
   void enableCrimeNotification(bool enabled){
     _appPrefs.setEnableCrimeNotif(enabled);
-    notificationForCrime();
+    notificationForCrime(enabled);
     emit(SettingsState(crimeNotifEnabled: enabled,
         newsNotifEnabled: state.newsNotifEnabled));
   }
@@ -29,7 +34,7 @@ class SettingsCubit extends Cubit<SettingsState>{
   void enableNewsNotification(bool enabled){
     _appPrefs.setEnableNewsNotif(enabled);
 
-    notificationForNews();
+    notificationForNews(enabled);
     emit(SettingsState(newsNotifEnabled: enabled,
         crimeNotifEnabled: state.crimeNotifEnabled));
   }

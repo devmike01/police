@@ -49,7 +49,6 @@ class PoliceApiClient extends CoreClient{
       'q': "${latLng.lat},${latLng.lng}",
     });
 
-
     return FindNeigbourhood.fromJson(result);
   }
 

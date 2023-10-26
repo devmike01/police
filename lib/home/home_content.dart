@@ -15,7 +15,10 @@ import 'home_content_pages.dart';
 import 'home_state.dart';
 
 class HomeContent extends StatelessWidget {
-   const HomeContent({super.key});
+
+  HomeContent({super.key}){
+     initWorker();
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +27,6 @@ class HomeContent extends StatelessWidget {
 
     locationBloc.getCurrentLocation();
     contentBloc.changePage(0);
-
-    WidgetsBinding.instance
-        .addPostFrameCallback((timeStamp) {
-      initWorker();
-    });
 
     return BlocBuilder<HomeContentBloc, HomeState>(builder: (context, state) {
       String? locality;
@@ -39,7 +37,7 @@ class HomeContent extends StatelessWidget {
           children: [
             FloatingActionButton(onPressed: (){
               context.read<HomeContentBloc>().placeEmergencyCall();
-            }, child: Icon(Icons.emergency_outlined),)
+            }, child: const Icon(Icons.emergency_outlined),)
           ],
         ),
         body:  SafeArea(

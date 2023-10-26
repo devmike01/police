@@ -11,6 +11,7 @@ class AppPrefs {
   static const PREF_CRIME_CATEGORIES =".PREF_CRIME_CATEGORIES";
   static const PREF_NOTIFICATION_CRIME =".PREF_NOTIFICATION_CRIME";
   static const PREF_NOTIFICATION_NEWS =".PREF_NOTIFICATION_NEWS";
+  static const PREF_OLD_NOTIF = ".PREF_OLD_NOTIF";
 
 
   AppPrefs();
@@ -29,6 +30,16 @@ class AppPrefs {
         .catchError((error){
       print("object $error");
     });
+  }
+
+  Future<bool> setOldNews(int oldNewsTime) async{
+    final prefs = await SharedPreferences.getInstance();
+    return await prefs.setInt(PREF_OLD_NOTIF, oldNewsTime);
+  }
+
+  Future<int> getOldNewsTime() async{
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(PREF_OLD_NOTIF) ?? -1;
   }
 
   Future<Position?> getLocationData() async{

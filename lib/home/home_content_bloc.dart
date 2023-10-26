@@ -38,8 +38,8 @@ class HomeContentBloc extends Bloc<TopNavPagesEvent, HomeState>{
         event.getTitle(), ForcesPage(), homeMenus: [
           ForcesMenu("List of all forces in the Uk", AppIcons.policeman_ic, 0, Colors.redAccent.value),
           ForcesMenu("All UK emergency numbers", AppIcons.joyfulDoctor, 1, Colors.purple.value),
-          ForcesMenu(MenuStrings.stopAndSearch, AppIcons.policeman_ic, 2, Colors.orange.value),
-          ForcesMenu(MenuStrings.neigbourhoodForce, AppIcons.policeman_ic, 3, Colors.blueAccent.value)
+          ForcesMenu(MenuStrings.stopAndSearch, AppIcons.policeCar, 2, Colors.orange.value),
+          ForcesMenu(MenuStrings.neigbourhoodForce, AppIcons.policeStation, 3, Colors.blueAccent.value)
         ])));
     on<NewsEvent>((event, emit) => emit(HomeState(event.getIndex(),
         event.getTitle(), NewsPage())));

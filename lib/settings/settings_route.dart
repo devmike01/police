@@ -5,6 +5,8 @@ import 'package:police/settings/settings_bloc.dart';
 import 'package:police/settings/settings_state.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import '../core/workers/notification_worker.dart';
+
 class SettingsRoute extends StatefulWidget{
 
   static String route = "settings/SettingsRoute";
@@ -21,6 +23,8 @@ class SettingsRoute extends StatefulWidget{
 class SettingsRouteState extends State<SettingsRoute>{
   @override
   Widget build(BuildContext context) {
+    print('REBUILDING...');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),

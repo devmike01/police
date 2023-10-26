@@ -10,7 +10,9 @@
     <application
         android:label="UK Police Guide"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:showWhenLocked="true"
+        android:turnScreenOn="true">
 
 <!--        <service android:name="com.example.MyConnectionService"-->
 <!--            android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE">-->

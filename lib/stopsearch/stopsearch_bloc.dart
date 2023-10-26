@@ -18,6 +18,8 @@ class StopSearchBloc extends Bloc<StopSearchEvent, StopSearchState>{
 
   late StopSearchState successStopSearchState;
 
+  static const String na = 'Not available';
+
   StopSearchBloc(): super(StopSearchState.none()){
 
 

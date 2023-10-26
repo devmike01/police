@@ -4,6 +4,7 @@ import 'package:month_year_picker/month_year_picker.dart';
 import 'package:police/home/forces_banner.dart';
 import 'package:police/misc/app_icons.dart';
 import 'package:police/misc/page_title.dart';
+import 'package:police/stopsearch/stop_search_details.dart';
 import 'package:police/stopsearch/stopsearch_args.dart';
 import 'package:police/stopsearch/stopsearch_bloc.dart';
 import 'package:police/stopsearch/stopsearch_state.dart';
@@ -60,8 +61,8 @@ class StopSearchScreenState extends State<StopSearchScreen>{
                 if(value != initialDate){
                   pContext?.read<StopSearchBloc>().updateTime(value);
                   pContext?.read<StopSearchBloc>()
-                      .getStopAndSearch(stopSearchArgs?.lat,
-                      stopSearchArgs?.lng, "${value?.year}-${value?.month}");
+                      .getStopAndSearch(stopSearchArgs.lat,
+                      stopSearchArgs.lng, "${value?.year}-${value?.month}");
                 }
 
               });
@@ -126,7 +127,7 @@ class StopSearchScreenState extends State<StopSearchScreen>{
                         children: state.stopSearchList?.map((e)
                         => ColumnTile(e?.stopSearch.location?.street?.name,
                           e.rating, AppIcons.location_ill, onTap: (){
-
+                            StopSearchRoute.show(e.stopSearch, context);
                           },)).toList() ??[],
                       ), )
                   ],
