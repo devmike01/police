@@ -245,14 +245,15 @@ class Runner{
   }
 
   void computeAPI(bool isCrime){
-
-    print('[WorkManager] => Hello');
     compute(runInBackground, isCrime);
   }
 
    void runInBackground(bool isCrime){
     NotificationWorker worker = NotificationWorker();
      final appPrefs = getIt.get<AppPrefs>();
+
+    print('[WorkManager] => Hello: $isCrime');
+
      if(isCrime){
        registerPoliceAPI();
        _runCrime(worker, appPrefs);

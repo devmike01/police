@@ -7,6 +7,7 @@ import 'package:police/core/location/location_state.dart';
 import 'package:police/home/top_nav_ui.dart';
 import 'package:police/misc/app_icons.dart';
 
+import '../commons/strings.dart';
 import '../core/workers/notification_worker.dart';
 import '../misc/page_title.dart';
 import 'forces_banner.dart';
@@ -66,6 +67,14 @@ class HomeContent extends StatelessWidget {
                           );
                         }
                         final cLocationState = locState as CurrentLocationState;
+                        
+                        if(cLocationState.noLocation){
+                          return Container(
+                            padding: const EdgeInsets.all(20),
+                            alignment: Alignment.center,
+                            child: const Text(Strings.noLocation),
+                          );
+                        }
 
                         final placemark = cLocationState.placemarks?.first;
                         locality = placemark?.locality;

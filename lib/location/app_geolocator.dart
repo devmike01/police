@@ -17,6 +17,7 @@ class AppGeolocator{
 
     final cachedPosition = await appPref.getLocationData();
 
+
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
